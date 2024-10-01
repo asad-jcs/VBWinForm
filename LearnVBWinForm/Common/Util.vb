@@ -1,11 +1,9 @@
 ﻿Public Class Util
-    Private Shared _priority As New Dictionary(Of String, String)
-
-    Public Sub New()
-        _priority.Add("LOW", "Low")
-        _priority.Add("MEDIUM", "Medium")
-        _priority.Add("HIGH", "High")
-    End Sub
+    Private Shared _priority As New Dictionary(Of String, String) From {
+        {"LOW", "Low"},
+        {"MEDIUM", "Medium"},
+        {"HIGH", "High"}
+    }
 
     Public Shared Function PriorityList()
         Return _priority

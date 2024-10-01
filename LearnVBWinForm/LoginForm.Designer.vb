@@ -35,7 +35,7 @@ Partial Class LoginForm
         ' 
         ' emailTextBox
         ' 
-        emailTextBox.Location = New Point(364, 127)
+        emailTextBox.Location = New Point(113, 92)
         emailTextBox.Name = "emailTextBox"
         emailTextBox.Size = New Size(170, 27)
         emailTextBox.TabIndex = 0
@@ -43,7 +43,7 @@ Partial Class LoginForm
         ' emailLabel
         ' 
         emailLabel.AutoSize = True
-        emailLabel.Location = New Point(280, 130)
+        emailLabel.Location = New Point(29, 95)
         emailLabel.Name = "emailLabel"
         emailLabel.Size = New Size(46, 20)
         emailLabel.TabIndex = 1
@@ -52,7 +52,7 @@ Partial Class LoginForm
         ' passwordLabel
         ' 
         passwordLabel.AutoSize = True
-        passwordLabel.Location = New Point(280, 163)
+        passwordLabel.Location = New Point(29, 128)
         passwordLabel.Name = "passwordLabel"
         passwordLabel.Size = New Size(70, 20)
         passwordLabel.TabIndex = 7
@@ -60,14 +60,14 @@ Partial Class LoginForm
         ' 
         ' passwordTextBox
         ' 
-        passwordTextBox.Location = New Point(364, 160)
+        passwordTextBox.Location = New Point(113, 125)
         passwordTextBox.Name = "passwordTextBox"
         passwordTextBox.Size = New Size(170, 27)
         passwordTextBox.TabIndex = 6
         ' 
         ' loginButton
         ' 
-        loginButton.Location = New Point(440, 193)
+        loginButton.Location = New Point(189, 158)
         loginButton.Name = "loginButton"
         loginButton.Size = New Size(94, 29)
         loginButton.TabIndex = 8

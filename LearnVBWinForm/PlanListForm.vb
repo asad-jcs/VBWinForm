@@ -2,7 +2,8 @@
 
 Public Class PlanListForm
     Private _taskInfoService As TaskInfoService
-    Private _listOfPlans As List(Of Task_Info)
+    Private _listOfPlans As List(Of UserTaskViewModel)
+
     Public Sub New()
 
         ' This call is required by the designer.
@@ -14,14 +15,15 @@ Public Class PlanListForm
 
     End Sub
 
-    Private Sub LoadListView(taskList As List(Of Task_Info))
+    Private Sub LoadListView(taskList As List(Of UserTaskViewModel))
         planListView.View = View.Details
 
         planListView.Columns.Add("Title", 100, HorizontalAlignment.Left)
-        planListView.Columns.Add("Description", 100, HorizontalAlignment.Left)
+        planListView.Columns.Add("Description", 300, HorizontalAlignment.Left)
         planListView.Columns.Add("StartDate", 100, HorizontalAlignment.Left)
         planListView.Columns.Add("EndDate", 100, HorizontalAlignment.Left)
         planListView.Columns.Add("Priority", 100, HorizontalAlignment.Left)
+        planListView.Columns.Add("User", 100, HorizontalAlignment.Left)
 
         planListView.Items.Clear()
 
@@ -34,6 +36,7 @@ Public Class PlanListForm
             listItem.SubItems.Add(task.Start_Date)
             listItem.SubItems.Add(task.End_Date)
             listItem.SubItems.Add(task.Priority)
+            listItem.SubItems.Add(task.Username)
 
             ' Add the ListViewItem to the ListView
             planListView.Items.Add(listItem)

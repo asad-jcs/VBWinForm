@@ -34,4 +34,16 @@ Public Class UserService
         End Using
     End Sub
 
+    Public Function GetAll()
+        Using connection As New DB2Connection(_dbContext.ConnectionString)
+            connection.Open()
+
+            Dim query As String = "Select * from AUTH.User"
+
+            Dim result As List(Of User) = connection.Query(Of User)(query).ToList()
+
+            Return result
+        End Using
+    End Function
+
 End Class

@@ -26,9 +26,9 @@ Public Class TaskInfoService
         Using connection As New DB2Connection(_dbContext.ConnectionString)
             connection.Open()
 
-            Dim query As String = "Select * from TASK.TASK_INFO"
+            Dim query As String = "Select ti.Title, ti.Description, ti.Start_Date, ti.End_Date, ti.Priority, ti.User_Id, us.Username from TASK.TASK_INFO ti inner join AUTH.USER us on ti.User_Id= us.Id"
 
-            Dim result As List(Of Task_Info) = connection.Query(Of Task_Info)(query).ToList()
+            Dim result As List(Of UserTaskViewModel) = connection.Query(Of UserTaskViewModel)(query).ToList()
 
             Return result
         End Using
