@@ -27,7 +27,7 @@ Public Class LoginForm
         Dim res = _userService.Login(user)
 
         If (res IsNot Nothing) Then
-            MessageBox.Show("Login Successful!")
+
 
             Dim plan As New PlanForm(res.Id)
 
@@ -36,6 +36,8 @@ Public Class LoginForm
             ServiceProvider.SetSessionValue("User", res)
 
             mainForm.LoadForm(plan)
+        Else
+            MessageBox.Show("Login Failed!")
         End If
     End Sub
 

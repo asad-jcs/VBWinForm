@@ -33,24 +33,24 @@ Partial Class PlanListForm
         planTableLayoutPanel.BackColor = Color.FromArgb(CByte(44), CByte(62), CByte(80))
         planTableLayoutPanel.BackgroundImageLayout = ImageLayout.Center
         planTableLayoutPanel.ColumnCount = 5
-        planTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 20.0F))
+        planTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 20F))
         planTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 17.5F))
-        planTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 25.0F))
+        planTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 25F))
         planTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 17.5F))
-        planTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 20.0F))
+        planTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 20F))
         planTableLayoutPanel.Controls.Add(listPlanLabel, 2, 0)
         planTableLayoutPanel.Dock = DockStyle.Top
         planTableLayoutPanel.Location = New Point(0, 0)
         planTableLayoutPanel.Name = "planTableLayoutPanel"
         planTableLayoutPanel.RowCount = 1
-        planTableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Percent, 100.0F))
+        planTableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Percent, 100F))
         planTableLayoutPanel.Size = New Size(800, 57)
         planTableLayoutPanel.TabIndex = 17
         ' 
         ' listPlanLabel
         ' 
         listPlanLabel.AutoSize = True
-        listPlanLabel.Font = New Font("Comic Sans MS", 20.0F)
+        listPlanLabel.Font = New Font("Comic Sans MS", 20F)
         listPlanLabel.ForeColor = SystemColors.ControlLightLight
         listPlanLabel.Location = New Point(303, 0)
         listPlanLabel.Name = "listPlanLabel"
@@ -60,6 +60,7 @@ Partial Class PlanListForm
         ' 
         ' planListView
         ' 
+        planListView.BackColor = Color.FromArgb(CByte(189), CByte(195), CByte(199))
         planListView.Dock = DockStyle.Fill
         planListView.Location = New Point(0, 57)
         planListView.Name = "planListView"
@@ -67,9 +68,9 @@ Partial Class PlanListForm
         planListView.TabIndex = 18
         planListView.UseCompatibleStateImageBehavior = False
         ' 
-        ' Plan_List
+        ' PlanListForm
         ' 
-        AutoScaleDimensions = New SizeF(8.0F, 20.0F)
+        AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(800, 450)
         Controls.Add(planListView)

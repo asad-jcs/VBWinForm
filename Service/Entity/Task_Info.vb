@@ -1,10 +1,10 @@
 ﻿Public Class Task_Info
     Private _id As String
-    Public Property Id() As String
+    Public Property Id() As Integer
         Get
             Return _id
         End Get
-        Set(ByVal value As String)
+        Set(ByVal value As Integer)
             _id = value
         End Set
     End Property
@@ -68,6 +68,28 @@
         End Get
         Set(ByVal value As Integer)
             _user_id = value
+        End Set
+    End Property
+
+    Private _completion As String
+
+    Public Property Completion As Decimal
+        Get
+            Return _completion
+        End Get
+        Set(ByVal value As Decimal)
+            _completion = value
+        End Set
+    End Property
+
+    Private _finishing_date As Date?
+
+    Public Property Finishing_Date() As Date?
+        Get
+            Return _finishing_date
+        End Get
+        Set(ByVal value As Date?)
+            _finishing_date = value
         End Set
     End Property
 End Class

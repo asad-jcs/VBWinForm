@@ -31,7 +31,7 @@
         End Set
     End Property
 
-    Private _start_date As String
+    Private _start_date As Date
     Public Property Start_Date() As Date
         Get
             Return _start_date
@@ -41,7 +41,7 @@
         End Set
     End Property
 
-    Private _end_date As String
+    Private _end_date As Date
     Public Property End_Date() As Date
         Get
             Return _end_date
@@ -62,7 +62,7 @@
     End Property
 
     Private _user_id As String
-    Public Property UserID() As Integer
+    Public Property User_ID() As Integer
         Get
             Return _user_id
         End Get
@@ -79,6 +79,28 @@
         End Get
         Set(ByVal value As String)
             _username = value
+        End Set
+    End Property
+
+    Private _completion As String
+
+    Public Property Completion() As String
+        Get
+            Return _completion
+        End Get
+        Set(ByVal value As String)
+            _completion = value
+        End Set
+    End Property
+
+    Private _finishing_date As Date?
+
+    Public Property Finishing_Date() As Date?
+        Get
+            Return _finishing_date
+        End Get
+        Set(ByVal value As Date?)
+            _finishing_date = value
         End Set
     End Property
 End Class

@@ -1,8 +1,9 @@
-﻿Imports System.Windows.Forms.VisualStyles.VisualStyleElement
+﻿Imports System.Windows.Forms
 Imports Service
 
 Public Class PlanForm
     Private _taskInfoService As TaskInfoService
+    Private _userService As UserService
     Private _userID As Integer
     Private _priorityDictionary As New Dictionary(Of String, String)
     Public Sub New(userId As Integer)
@@ -10,9 +11,10 @@ Public Class PlanForm
         ' This call is required by the designer.
         InitializeComponent()
         _priorityDictionary = Util.PriorityList
-        LoadDropdown()
         _taskInfoService = New TaskInfoService()
+        _userService = New UserService()
         _userID = userId
+        LoadDropdown()
         ' Add any initialization after the InitializeComponent() call.
 
     End Sub
@@ -30,14 +32,26 @@ Public Class PlanForm
         ' Find the corresponding key in the dictionary based on the selected value
         Dim selectedKey As String = _priorityDictionary.FirstOrDefault(Function(kvp) kvp.Value = selectedValue).Key
         taskInfo.Priority = selectedKey
-        taskInfo.UserID = _userID
+        If userComboBox.SelectedValue Is Nothing Then
+            taskInfo.UserID = _userID
+        Else
+            taskInfo.UserID = userComboBox.SelectedValue
+        End If
 
         _taskInfoService.Add(taskInfo)
+
+        MessageBox.Show("Task Has Registered Successfully")
+        Util.ClearAllInputs(Me)
     End Sub
 
     Private Sub LoadDropdown()
         For Each kvp As KeyValuePair(Of String, String) In _priorityDictionary
             priorityComboBox.Items.Add(kvp.Value)
         Next
+
+        Util.LoadDropBox(userComboBox, _userService.GetAll(), "Username", "Id")
+
     End Sub
+
+
 End Class

@@ -23,18 +23,22 @@ Partial Class Dashboard
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         navPanel = New Panel()
+        planManageLinkLabel = New LinkLabel()
         planListLinkLabel = New LinkLabel()
         pNameLabel = New Label()
         logoutLinkLabel = New LinkLabel()
         planLinkLabel = New LinkLabel()
         loginLinkLabel = New LinkLabel()
         mainPanel = New Panel()
+        welcomeLabel = New Label()
         navPanel.SuspendLayout()
+        mainPanel.SuspendLayout()
         SuspendLayout()
         ' 
         ' navPanel
         ' 
         navPanel.BackColor = Color.FromArgb(CByte(155), CByte(89), CByte(182))
+        navPanel.Controls.Add(planManageLinkLabel)
         navPanel.Controls.Add(planListLinkLabel)
         navPanel.Controls.Add(pNameLabel)
         navPanel.Controls.Add(logoutLinkLabel)
@@ -45,6 +49,18 @@ Partial Class Dashboard
         navPanel.Name = "navPanel"
         navPanel.Size = New Size(136, 450)
         navPanel.TabIndex = 0
+        ' 
+        ' planManageLinkLabel
+        ' 
+        planManageLinkLabel.AutoSize = True
+        planManageLinkLabel.LinkColor = Color.Yellow
+        planManageLinkLabel.Location = New Point(3, 141)
+        planManageLinkLabel.Name = "planManageLinkLabel"
+        planManageLinkLabel.Size = New Size(129, 20)
+        planManageLinkLabel.TabIndex = 4
+        planManageLinkLabel.TabStop = True
+        planManageLinkLabel.Text = "Plan Management"
+        planManageLinkLabel.Visible = False
         ' 
         ' planListLinkLabel
         ' 
@@ -103,11 +119,24 @@ Partial Class Dashboard
         ' 
         ' mainPanel
         ' 
+        mainPanel.BackColor = Color.FromArgb(CByte(189), CByte(195), CByte(199))
+        mainPanel.Controls.Add(welcomeLabel)
         mainPanel.Dock = DockStyle.Fill
         mainPanel.Location = New Point(136, 0)
         mainPanel.Name = "mainPanel"
         mainPanel.Size = New Size(664, 450)
         mainPanel.TabIndex = 1
+        ' 
+        ' welcomeLabel
+        ' 
+        welcomeLabel.AutoSize = True
+        welcomeLabel.Font = New Font("Comic Sans MS", 50F, FontStyle.Bold)
+        welcomeLabel.ForeColor = Color.FromArgb(CByte(95), CByte(39), CByte(205))
+        welcomeLabel.Location = New Point(6, 125)
+        welcomeLabel.Name = "welcomeLabel"
+        welcomeLabel.Size = New Size(406, 117)
+        welcomeLabel.TabIndex = 0
+        welcomeLabel.Text = "Welcome"
         ' 
         ' Dashboard
         ' 
@@ -121,6 +150,8 @@ Partial Class Dashboard
         WindowState = FormWindowState.Maximized
         navPanel.ResumeLayout(False)
         navPanel.PerformLayout()
+        mainPanel.ResumeLayout(False)
+        mainPanel.PerformLayout()
         ResumeLayout(False)
     End Sub
 
@@ -131,4 +162,6 @@ Partial Class Dashboard
     Friend WithEvents planLinkLabel As LinkLabel
     Friend WithEvents pNameLabel As Label
     Friend WithEvents planListLinkLabel As LinkLabel
+    Friend WithEvents welcomeLabel As Label
+    Friend WithEvents planManageLinkLabel As LinkLabel
 End Class

@@ -119,6 +119,7 @@ Partial Class LoginForm
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
+        BackColor = Color.FromArgb(CByte(189), CByte(195), CByte(199))
         ClientSize = New Size(800, 450)
         ControlBox = False
         Controls.Add(loginTableLayoutPanel)

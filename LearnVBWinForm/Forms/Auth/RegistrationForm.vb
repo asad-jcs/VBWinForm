@@ -22,11 +22,11 @@ Public Class RegistrationForm
         If cnfPasswordTextBox.Text = passwordTextBox.Text Then
             user.Password = passwordTextBox.Text
             _userService.Registration(user)
+            Util.ClearAllInputs(Me)
         Else
             MessageBox.Show("Password did not match!")
         End If
 
         MessageBox.Show("Data Saved Successfully!")
-
     End Sub
 End Class

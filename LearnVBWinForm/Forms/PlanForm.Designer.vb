@@ -37,6 +37,8 @@ Partial Class PlanForm
         FontDialog1 = New FontDialog()
         entryPlanLabel = New Label()
         planTableLayoutPanel = New TableLayoutPanel()
+        userComboBox = New ComboBox()
+        assignLabel = New Label()
         planTableLayoutPanel.SuspendLayout()
         SuspendLayout()
         ' 
@@ -124,7 +126,7 @@ Partial Class PlanForm
         ' 
         ' addButton
         ' 
-        addButton.Location = New Point(162, 352)
+        addButton.Location = New Point(162, 392)
         addButton.Name = "addButton"
         addButton.Size = New Size(94, 29)
         addButton.TabIndex = 12
@@ -161,12 +163,32 @@ Partial Class PlanForm
         planTableLayoutPanel.Size = New Size(800, 57)
         planTableLayoutPanel.TabIndex = 16
         ' 
+        ' userComboBox
+        ' 
+        userComboBox.FormattingEnabled = True
+        userComboBox.Location = New Point(162, 354)
+        userComboBox.Name = "userComboBox"
+        userComboBox.Size = New Size(202, 28)
+        userComboBox.TabIndex = 19
+        ' 
+        ' assignLabel
+        ' 
+        assignLabel.AutoSize = True
+        assignLabel.Location = New Point(26, 357)
+        assignLabel.Name = "assignLabel"
+        assignLabel.Size = New Size(52, 20)
+        assignLabel.TabIndex = 18
+        assignLabel.Text = "Assign"
+        ' 
         ' PlanForm
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
+        BackColor = Color.FromArgb(CByte(189), CByte(195), CByte(199))
         ClientSize = New Size(800, 450)
         ControlBox = False
+        Controls.Add(userComboBox)
+        Controls.Add(assignLabel)
         Controls.Add(planTableLayoutPanel)
         Controls.Add(addButton)
         Controls.Add(priorityComboBox)
@@ -204,4 +226,6 @@ Partial Class PlanForm
     Friend WithEvents Panel1 As Panel
     Friend WithEvents entryPlanLabel As Label
     Friend WithEvents planTableLayoutPanel As TableLayoutPanel
+    Friend WithEvents userComboBox As ComboBox
+    Friend WithEvents assignLabel As Label
 End Class
