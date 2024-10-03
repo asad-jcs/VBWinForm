@@ -29,7 +29,7 @@ Public Class LoginForm
         If (res IsNot Nothing) Then
 
 
-            Dim plan As New PlanForm(res.Id)
+            Dim plan As New PlanListForm()
 
             mainForm.ShowNavAfterLogin()
 

@@ -23,11 +23,12 @@ Partial Class Dashboard
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         navPanel = New Panel()
+        projectLinkLabel = New LinkLabel()
+        clientLinkLabel = New LinkLabel()
         planManageLinkLabel = New LinkLabel()
-        planListLinkLabel = New LinkLabel()
         pNameLabel = New Label()
         logoutLinkLabel = New LinkLabel()
-        planLinkLabel = New LinkLabel()
+        homeLinkLabel = New LinkLabel()
         loginLinkLabel = New LinkLabel()
         mainPanel = New Panel()
         welcomeLabel = New Label()
@@ -38,41 +39,54 @@ Partial Class Dashboard
         ' navPanel
         ' 
         navPanel.BackColor = Color.FromArgb(CByte(155), CByte(89), CByte(182))
+        navPanel.Controls.Add(projectLinkLabel)
+        navPanel.Controls.Add(clientLinkLabel)
         navPanel.Controls.Add(planManageLinkLabel)
-        navPanel.Controls.Add(planListLinkLabel)
         navPanel.Controls.Add(pNameLabel)
         navPanel.Controls.Add(logoutLinkLabel)
-        navPanel.Controls.Add(planLinkLabel)
+        navPanel.Controls.Add(homeLinkLabel)
         navPanel.Controls.Add(loginLinkLabel)
         navPanel.Dock = DockStyle.Left
         navPanel.Location = New Point(0, 0)
         navPanel.Name = "navPanel"
-        navPanel.Size = New Size(136, 450)
+        navPanel.Size = New Size(152, 450)
         navPanel.TabIndex = 0
+        ' 
+        ' projectLinkLabel
+        ' 
+        projectLinkLabel.AutoSize = True
+        projectLinkLabel.LinkColor = Color.Yellow
+        projectLinkLabel.Location = New Point(2, 170)
+        projectLinkLabel.Name = "projectLinkLabel"
+        projectLinkLabel.Size = New Size(147, 20)
+        projectLinkLabel.TabIndex = 6
+        projectLinkLabel.TabStop = True
+        projectLinkLabel.Text = "Project Management"
+        projectLinkLabel.Visible = False
+        ' 
+        ' clientLinkLabel
+        ' 
+        clientLinkLabel.AutoSize = True
+        clientLinkLabel.LinkColor = Color.Yellow
+        clientLinkLabel.Location = New Point(3, 136)
+        clientLinkLabel.Name = "clientLinkLabel"
+        clientLinkLabel.Size = New Size(139, 20)
+        clientLinkLabel.TabIndex = 5
+        clientLinkLabel.TabStop = True
+        clientLinkLabel.Text = "Client Management"
+        clientLinkLabel.Visible = False
         ' 
         ' planManageLinkLabel
         ' 
         planManageLinkLabel.AutoSize = True
         planManageLinkLabel.LinkColor = Color.Yellow
-        planManageLinkLabel.Location = New Point(3, 141)
+        planManageLinkLabel.Location = New Point(3, 99)
         planManageLinkLabel.Name = "planManageLinkLabel"
         planManageLinkLabel.Size = New Size(129, 20)
         planManageLinkLabel.TabIndex = 4
         planManageLinkLabel.TabStop = True
         planManageLinkLabel.Text = "Plan Management"
         planManageLinkLabel.Visible = False
-        ' 
-        ' planListLinkLabel
-        ' 
-        planListLinkLabel.AutoSize = True
-        planListLinkLabel.LinkColor = Color.Yellow
-        planListLinkLabel.Location = New Point(3, 102)
-        planListLinkLabel.Name = "planListLinkLabel"
-        planListLinkLabel.Size = New Size(63, 20)
-        planListLinkLabel.TabIndex = 3
-        planListLinkLabel.TabStop = True
-        planListLinkLabel.Text = "Plan List"
-        planListLinkLabel.Visible = False
         ' 
         ' pNameLabel
         ' 
@@ -94,17 +108,17 @@ Partial Class Dashboard
         logoutLinkLabel.Text = "Logout"
         logoutLinkLabel.Visible = False
         ' 
-        ' planLinkLabel
+        ' homeLinkLabel
         ' 
-        planLinkLabel.AutoSize = True
-        planLinkLabel.LinkColor = Color.Yellow
-        planLinkLabel.Location = New Point(3, 68)
-        planLinkLabel.Name = "planLinkLabel"
-        planLinkLabel.Size = New Size(37, 20)
-        planLinkLabel.TabIndex = 1
-        planLinkLabel.TabStop = True
-        planLinkLabel.Text = "Plan"
-        planLinkLabel.Visible = False
+        homeLinkLabel.AutoSize = True
+        homeLinkLabel.LinkColor = Color.Yellow
+        homeLinkLabel.Location = New Point(3, 68)
+        homeLinkLabel.Name = "homeLinkLabel"
+        homeLinkLabel.Size = New Size(50, 20)
+        homeLinkLabel.TabIndex = 1
+        homeLinkLabel.TabStop = True
+        homeLinkLabel.Text = "Home"
+        homeLinkLabel.Visible = False
         ' 
         ' loginLinkLabel
         ' 
@@ -122,9 +136,9 @@ Partial Class Dashboard
         mainPanel.BackColor = Color.FromArgb(CByte(189), CByte(195), CByte(199))
         mainPanel.Controls.Add(welcomeLabel)
         mainPanel.Dock = DockStyle.Fill
-        mainPanel.Location = New Point(136, 0)
+        mainPanel.Location = New Point(152, 0)
         mainPanel.Name = "mainPanel"
-        mainPanel.Size = New Size(664, 450)
+        mainPanel.Size = New Size(648, 450)
         mainPanel.TabIndex = 1
         ' 
         ' welcomeLabel
@@ -159,9 +173,11 @@ Partial Class Dashboard
     Friend WithEvents loginLinkLabel As LinkLabel
     Friend WithEvents mainPanel As Panel
     Friend WithEvents logoutLinkLabel As LinkLabel
-    Friend WithEvents planLinkLabel As LinkLabel
+    Friend WithEvents homeLinkLabel As LinkLabel
     Friend WithEvents pNameLabel As Label
     Friend WithEvents planListLinkLabel As LinkLabel
     Friend WithEvents welcomeLabel As Label
     Friend WithEvents planManageLinkLabel As LinkLabel
+    Friend WithEvents projectLinkLabel As LinkLabel
+    Friend WithEvents clientLinkLabel As LinkLabel
 End Class

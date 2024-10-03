@@ -103,4 +103,25 @@
             _finishing_date = value
         End Set
     End Property
+    Private _projectId As String
+    Public Property ProjectId() As String
+        Get
+            Return _projectId
+        End Get
+        Set(ByVal value As String)
+            _projectId = value
+        End Set
+    End Property
+
+
+    Private _projectName As String
+
+    Public Property ProjectName() As String
+        Get
+            Return _projectName
+        End Get
+        Set(ByVal value As String)
+            _projectName = value
+        End Set
+    End Property
 End Class

@@ -5,29 +5,34 @@ Public Class PlanManage
 
     Private ReadOnly _taskService As TaskInfoService
     Private ReadOnly _userService As UserService
+    Private ReadOnly _projectService As ProjectService
     Private _listOfTask As List(Of UserTaskViewModel)
     Private _taskInfo As Task_Info
     Private _selectedItem As Integer
+    Private _priorityDictionary As New Dictionary(Of String, String)
     Public Sub New()
 
         ' This call is required by the designer.
         InitializeComponent()
         _taskService = New TaskInfoService()
         _userService = New UserService()
+        _projectService = New ProjectService()
 
         LoadPlanDataGridView()
+        LoadDropdown()
 
-        Util.LoadDropBox(userComboBox, _userService.GetAll(), "Username", "Id")
 
+        ' This allows for a "blank" appearance while still being able to select dates
         finishDateTimePicker.Format = DateTimePickerFormat.Custom
-        finishDateTimePicker.CustomFormat = " " ' This makes it look empty
-        finishDateTimePicker.Value = DateTimePicker.MinimumDateTime
+        finishDateTimePicker.CustomFormat = "yyyy/MM/dd" ' or any other format you prefer
+        finishDateTimePicker.ShowCheckBox = True ' Allow checking to "clear" the date
+        finishDateTimePicker.Value = DateTimePicker.MinimumDateTime ' Initially set to the minimum date
     End Sub
     Private Sub LoadPlanDataGridView()
         _listOfTask = _taskService.GetAll()
         Util.LoadGridView(planDataGridView, _listOfTask)
         planDataGridView.Columns("User_ID").Visible = False
-
+        planDataGridView.Columns("ProjectId").Visible = False
     End Sub
     Private Sub deleteButton_Click(sender As Object, e As EventArgs) Handles deleteButton.Click
 
@@ -119,36 +124,81 @@ Public Class PlanManage
 
             ' Calculate the filled area
             Dim fillWidth As Integer = CInt((completionRate / 100.0) * progressBarBounds.Width)
-            If fillWidth > 0 Then
+            If fillWidth = 96 Then
                 Dim filledRect As New Rectangle(progressBarBounds.X, progressBarBounds.Y,
                                                  fillWidth, progressBarBounds.Height)
-                e.Graphics.FillRectangle(Brushes.Green, filledRect) ' Change color as needed
+                e.Graphics.FillRectangle(Brushes.LightSeaGreen, filledRect) ' Change color as needed
+            Else
+                Dim filledRect As New Rectangle(progressBarBounds.X, progressBarBounds.Y,
+                                                 fillWidth, progressBarBounds.Height)
+                e.Graphics.FillRectangle(Brushes.LightSalmon, filledRect) ' Change color as needed
             End If
 
             ' Optionally draw the percentage text
             e.Graphics.DrawString(completionRate.ToString() & "%", e.CellStyle.Font, Brushes.Black, e.CellBounds, StringFormat.GenericDefault)
         End If
     End Sub
-
     Private Sub planDataGridView_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles planDataGridView.CellFormatting
         If planDataGridView.Columns(e.ColumnIndex).Name = "End_Date" Then
             Dim endDate As DateTime
-
+            Dim currentRowIndex As Integer = e.RowIndex
+            Dim completionValue As Object = planDataGridView.Rows(currentRowIndex).Cells("Completion").Value
             ' Attempt to parse the cell value as a DateTime
             If DateTime.TryParse(e.Value?.ToString(), endDate) Then
                 ' Compare the due date with the current date
                 Dim daysUntilDue As Integer = (endDate.Date - DateTime.Now.Date).Days
 
                 ' Change row color based on the comparison
-                If daysUntilDue <= 7 And daysUntilDue >= 0 Then
+                If completionValue = 100 Then
+                    planDataGridView.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.LightGray
+                ElseIf daysUntilDue <= 7 And daysUntilDue >= 0 Then
                     planDataGridView.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.Yellow ' Change to yellow for upcoming due dates
                 ElseIf daysUntilDue < 0 Then
-                    planDataGridView.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.Red ' Change to red for overdue tasks
+                    planDataGridView.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.OrangeRed ' Change to red for overdue tasks
                 Else
                     planDataGridView.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.White ' Default color
                 End If
             End If
         End If
+
     End Sub
 
+    Private Sub addButton_Click(sender As Object, e As EventArgs) Handles addButton.Click
+        Dim taskInfo = New Task_Info()
+
+        taskInfo.Title = titleTextBox.Text
+        taskInfo.Description = descTextBox.Text
+        taskInfo.Start_Date = startDateTimePicker.Value
+        taskInfo.End_Date = endDateTimePicker.Value
+
+        Dim selectedValue As String = priorityComboBox.SelectedItem.ToString()
+
+        ' Find the corresponding key in the dictionary based on the selected value
+        Dim selectedKey As String = _priorityDictionary.FirstOrDefault(Function(kvp) kvp.Value = selectedValue).Key
+        taskInfo.Priority = selectedKey
+        'If userComboBox.SelectedValue Is Nothing Then
+        '    taskInfo.UserID = _userID
+        'Else
+        '    taskInfo.UserID = userComboBox.SelectedValue
+        'End If
+
+        taskInfo.ProjectId = projectComboBox.SelectedValue
+        taskInfo.UserID = userComboBox.SelectedValue
+        _taskService.Add(taskInfo)
+
+        MessageBox.Show("Task Has Registered Successfully")
+        Util.ClearAllInputs(Me)
+
+        LoadPlanDataGridView()
+    End Sub
+
+    Private Sub LoadDropdown()
+        _priorityDictionary = Util.PriorityList()
+        For Each kvp As KeyValuePair(Of String, String) In _priorityDictionary
+            priorityComboBox.Items.Add(kvp.Value)
+        Next
+
+        Util.LoadDropBox(userComboBox, _userService.GetAll(), "Username", "Id")
+        Util.LoadDropBox(projectComboBox, _projectService.GetAll(), "Name", "Id")
+    End Sub
 End Class

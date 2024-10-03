@@ -126,7 +126,7 @@ Partial Class PlanForm
         ' 
         ' addButton
         ' 
-        addButton.Location = New Point(162, 392)
+        addButton.Location = New Point(162, 424)
         addButton.Name = "addButton"
         addButton.Size = New Size(94, 29)
         addButton.TabIndex = 12
@@ -138,7 +138,7 @@ Partial Class PlanForm
         entryPlanLabel.AutoSize = True
         entryPlanLabel.Font = New Font("Comic Sans MS", 20F)
         entryPlanLabel.ForeColor = SystemColors.ControlLightLight
-        entryPlanLabel.Location = New Point(303, 0)
+        entryPlanLabel.Location = New Point(316, 0)
         entryPlanLabel.Name = "entryPlanLabel"
         entryPlanLabel.Size = New Size(181, 47)
         entryPlanLabel.TabIndex = 0
@@ -160,13 +160,13 @@ Partial Class PlanForm
         planTableLayoutPanel.Name = "planTableLayoutPanel"
         planTableLayoutPanel.RowCount = 1
         planTableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Percent, 100F))
-        planTableLayoutPanel.Size = New Size(800, 57)
+        planTableLayoutPanel.Size = New Size(835, 57)
         planTableLayoutPanel.TabIndex = 16
         ' 
         ' userComboBox
         ' 
         userComboBox.FormattingEnabled = True
-        userComboBox.Location = New Point(162, 354)
+        userComboBox.Location = New Point(162, 350)
         userComboBox.Name = "userComboBox"
         userComboBox.Size = New Size(202, 28)
         userComboBox.TabIndex = 19
@@ -174,7 +174,7 @@ Partial Class PlanForm
         ' assignLabel
         ' 
         assignLabel.AutoSize = True
-        assignLabel.Location = New Point(26, 357)
+        assignLabel.Location = New Point(26, 353)
         assignLabel.Name = "assignLabel"
         assignLabel.Size = New Size(52, 20)
         assignLabel.TabIndex = 18
@@ -185,7 +185,7 @@ Partial Class PlanForm
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.FromArgb(CByte(189), CByte(195), CByte(199))
-        ClientSize = New Size(800, 450)
+        ClientSize = New Size(835, 504)
         ControlBox = False
         Controls.Add(userComboBox)
         Controls.Add(assignLabel)

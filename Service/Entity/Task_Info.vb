@@ -92,4 +92,13 @@
             _finishing_date = value
         End Set
     End Property
+    Private _projectId As Integer
+    Public Property ProjectId() As Integer
+        Get
+            Return _projectId
+        End Get
+        Set(ByVal value As Integer)
+            _projectId = value
+        End Set
+    End Property
 End Class

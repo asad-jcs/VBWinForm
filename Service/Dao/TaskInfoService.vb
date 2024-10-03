@@ -9,7 +9,7 @@ Public Class TaskInfoService
 
             connection.Open()
 
-            Dim query As String = "INSERT INTO TASK.TASK_INFO (Title, Description, Start_Date, End_Date, Priority, User_Id) VALUES (@Title, @Description, @Start_Date, @End_Date, @Priority, @User_Id)"
+            Dim query As String = "INSERT INTO TASK.TASK_INFO (Title, Description, Start_Date, End_Date, Priority, User_Id, ProjectId) VALUES (@Title, @Description, @Start_Date, @End_Date, @Priority, @User_Id, @ProjectId)"
 
             connection.Execute(query, New With {
                 .Title = taskInfo.Title,
@@ -17,7 +17,8 @@ Public Class TaskInfoService
                 .Start_Date = taskInfo.Start_Date,
                 .End_Date = taskInfo.End_Date,
                 .Priority = taskInfo.Priority,
-                .User_Id = taskInfo.UserID
+                .User_Id = taskInfo.UserID,
+                .ProjectId = taskInfo.ProjectId
             })
         End Using
     End Sub
@@ -26,7 +27,7 @@ Public Class TaskInfoService
         Using connection As New DB2Connection(_dbContext.ConnectionString)
             connection.Open()
 
-            Dim query As String = "Select ti.Id, ti.Title, ti.Description, ti.Start_Date, ti.End_Date, ti.Priority, ti.User_Id, ti.Completion, ti.Finishing_Date, us.Username from TASK.TASK_INFO ti inner join AUTH.USER us on ti.User_Id= us.Id"
+            Dim query As String = "Select ti.Id, ti.Title, ti.Description, ti.Start_Date, ti.End_Date, ti.Priority, ti.User_Id, ti.Completion, ti.Finishing_Date, us.Username, pj.Name As ProjectName, pj.Id as ProjectId from TASK.TASK_INFO ti left join AUTH.USER us on ti.User_Id= us.Id left join TASK.Project pj on ti.ProjectId = pj.Id"
 
             Dim result As List(Of UserTaskViewModel) = connection.Query(Of UserTaskViewModel)(query).ToList()
 
