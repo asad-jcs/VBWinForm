@@ -47,9 +47,13 @@ Partial Class PlanManage
         descriptionLabel = New Label()
         titleTextBox = New TextBox()
         titleLabel = New Label()
+        searchTextBox = New TextBox()
+        searchButton = New Button()
+        Panel1 = New Panel()
         planManageTableLayoutPanel.SuspendLayout()
         CType(planDataGridView, ComponentModel.ISupportInitialize).BeginInit()
         editPanel.SuspendLayout()
+        Panel1.SuspendLayout()
         SuspendLayout()
         ' 
         ' planManageTableLayoutPanel
@@ -68,7 +72,7 @@ Partial Class PlanManage
         planManageTableLayoutPanel.Name = "planManageTableLayoutPanel"
         planManageTableLayoutPanel.RowCount = 1
         planManageTableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Percent, 100F))
-        planManageTableLayoutPanel.Size = New Size(840, 57)
+        planManageTableLayoutPanel.Size = New Size(1352, 57)
         planManageTableLayoutPanel.TabIndex = 18
         ' 
         ' planMngLabel
@@ -76,7 +80,7 @@ Partial Class PlanManage
         planMngLabel.AutoSize = True
         planMngLabel.Font = New Font("Comic Sans MS", 20F)
         planMngLabel.ForeColor = SystemColors.ControlLightLight
-        planMngLabel.Location = New Point(255, 0)
+        planMngLabel.Location = New Point(408, 0)
         planMngLabel.Name = "planMngLabel"
         planMngLabel.Size = New Size(289, 47)
         planMngLabel.TabIndex = 0
@@ -86,12 +90,11 @@ Partial Class PlanManage
         ' 
         planDataGridView.BackgroundColor = Color.FromArgb(CByte(189), CByte(195), CByte(199))
         planDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        planDataGridView.Dock = DockStyle.Fill
         planDataGridView.GridColor = SystemColors.InactiveCaption
-        planDataGridView.Location = New Point(0, 57)
+        planDataGridView.Location = New Point(424, 97)
         planDataGridView.Name = "planDataGridView"
         planDataGridView.RowHeadersWidth = 51
-        planDataGridView.Size = New Size(840, 494)
+        planDataGridView.Size = New Size(1100, 451)
         planDataGridView.TabIndex = 19
         ' 
         ' editPanel
@@ -118,10 +121,9 @@ Partial Class PlanManage
         editPanel.Controls.Add(descriptionLabel)
         editPanel.Controls.Add(titleTextBox)
         editPanel.Controls.Add(titleLabel)
-        editPanel.Dock = DockStyle.Right
-        editPanel.Location = New Point(428, 57)
+        editPanel.Location = New Point(12, 63)
         editPanel.Name = "editPanel"
-        editPanel.Size = New Size(412, 494)
+        editPanel.Size = New Size(406, 485)
         editPanel.TabIndex = 20
         ' 
         ' priorityComboBox
@@ -144,7 +146,7 @@ Partial Class PlanManage
         ' addButton
         ' 
         addButton.BackColor = Color.FromArgb(CByte(128), CByte(255), CByte(128))
-        addButton.Location = New Point(99, 407)
+        addButton.Location = New Point(99, 445)
         addButton.Name = "addButton"
         addButton.Size = New Size(94, 29)
         addButton.TabIndex = 21
@@ -171,7 +173,7 @@ Partial Class PlanManage
         ' deleteButton
         ' 
         deleteButton.BackColor = Color.FromArgb(CByte(255), CByte(128), CByte(128))
-        deleteButton.Location = New Point(299, 407)
+        deleteButton.Location = New Point(299, 445)
         deleteButton.Name = "deleteButton"
         deleteButton.Size = New Size(94, 29)
         deleteButton.TabIndex = 18
@@ -181,7 +183,7 @@ Partial Class PlanManage
         ' updteButton
         ' 
         updteButton.BackColor = Color.FromArgb(CByte(128), CByte(128), CByte(255))
-        updteButton.Location = New Point(199, 407)
+        updteButton.Location = New Point(199, 445)
         updteButton.Name = "updteButton"
         updteButton.Size = New Size(94, 29)
         updteButton.TabIndex = 17
@@ -302,15 +304,47 @@ Partial Class PlanManage
         titleLabel.TabIndex = 0
         titleLabel.Text = "Title"
         ' 
+        ' searchTextBox
+        ' 
+        searchTextBox.Location = New Point(424, 63)
+        searchTextBox.Name = "searchTextBox"
+        searchTextBox.Size = New Size(303, 27)
+        searchTextBox.TabIndex = 24
+        ' 
+        ' searchButton
+        ' 
+        searchButton.BackColor = Color.Bisque
+        searchButton.ForeColor = SystemColors.ActiveCaptionText
+        searchButton.Image = My.Resources.Resources.search
+        searchButton.ImageAlign = ContentAlignment.MiddleRight
+        searchButton.Location = New Point(733, 61)
+        searchButton.Name = "searchButton"
+        searchButton.Size = New Size(141, 29)
+        searchButton.TabIndex = 24
+        searchButton.Text = "Search"
+        searchButton.TextAlign = ContentAlignment.MiddleLeft
+        searchButton.UseVisualStyleBackColor = False
+        ' 
+        ' Panel1
+        ' 
+        Panel1.Controls.Add(searchButton)
+        Panel1.Controls.Add(editPanel)
+        Panel1.Controls.Add(searchTextBox)
+        Panel1.Controls.Add(planDataGridView)
+        Panel1.Dock = DockStyle.Fill
+        Panel1.Location = New Point(0, 0)
+        Panel1.Name = "Panel1"
+        Panel1.Size = New Size(1352, 805)
+        Panel1.TabIndex = 21
+        ' 
         ' PlanManage
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.FromArgb(CByte(189), CByte(195), CByte(199))
-        ClientSize = New Size(840, 551)
-        Controls.Add(editPanel)
-        Controls.Add(planDataGridView)
+        ClientSize = New Size(1352, 805)
         Controls.Add(planManageTableLayoutPanel)
+        Controls.Add(Panel1)
         Name = "PlanManage"
         Text = "Plan Manage"
         planManageTableLayoutPanel.ResumeLayout(False)
@@ -318,6 +352,8 @@ Partial Class PlanManage
         CType(planDataGridView, ComponentModel.ISupportInitialize).EndInit()
         editPanel.ResumeLayout(False)
         editPanel.PerformLayout()
+        Panel1.ResumeLayout(False)
+        Panel1.PerformLayout()
         ResumeLayout(False)
     End Sub
 
@@ -346,4 +382,7 @@ Partial Class PlanManage
     Friend WithEvents addButton As Button
     Friend WithEvents priorityComboBox As ComboBox
     Friend WithEvents Label1 As Label
+    Friend WithEvents searchTextBox As TextBox
+    Friend WithEvents searchButton As Button
+    Friend WithEvents Panel1 As Panel
 End Class

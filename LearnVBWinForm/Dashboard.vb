@@ -51,52 +51,58 @@ Public Class Dashboard
     End Sub
 
     Public Sub ShowNavBeforeLogin()
-        Me.logoutLinkLabel.Visible = False
-        Me.homeLinkLabel.Visible = False
+        'Me.logoutLinkLabel.Visible = False
+        'Me.homeLinkLabel.Visible = False
         Me.pNameLabel.Visible = False
         'Me.planListLinkLabel.Visible = False
-        Me.planManageLinkLabel.Visible = False
-        Me.clientLinkLabel.Visible = False
-        Me.projectLinkLabel.Visible = False
+        'Me.planManageLinkLabel.Visible = False
+        'Me.clientLinkLabel.Visible = False
+        'Me.projectLinkLabel.Visible = False
         Me.welcomeLabel.Visible = True
         welcomeLabel.BringToFront()
         mainPanel.Controls.Add(welcomeLabel)
-        Me.loginLinkLabel.Visible = True
+        Me.loginButton.Visible = True
+        Me.profilePictureBox.Visible = False
+        Me.MenuStrip.Visible = False
     End Sub
 
     Public Sub ShowNavAfterLogin()
-        Me.logoutLinkLabel.Visible = True
-        Me.homeLinkLabel.Visible = True
+        'Me.logoutLinkLabel.Visible = True
+        'Me.homeLinkLabel.Visible = True
         Me.pNameLabel.Visible = True
         'Me.planListLinkLabel.Visible = True
-        Me.planManageLinkLabel.Visible = True
-        Me.clientLinkLabel.Visible = True
-        Me.projectLinkLabel.Visible = True
+        'Me.planManageLinkLabel.Visible = True
+        'Me.clientLinkLabel.Visible = True
+        'Me.projectLinkLabel.Visible = True
         welcomeLabel.Visible = False
-        Me.loginLinkLabel.Visible = False
+        Me.loginButton.Visible = False
+        Me.profilePictureBox.Visible = True
+        Me.MenuStrip.Visible = True
     End Sub
 
-    Private Sub onLinkClickEvent(sender As Object, e As EventArgs) Handles loginLinkLabel.Click, logoutLinkLabel.Click, homeLinkLabel.Click, planListLinkLabel.Click, navPanel.Click, planManageLinkLabel.Click, clientLinkLabel.Click, projectLinkLabel.Click
-        Dim clickedLinkLabel = DirectCast(sender, LinkLabel)
+    Private Sub onLinkClickEvent(sender As Object, e As EventArgs) Handles planListLinkLabel.Click, Home.Click, Plan.Click, Project.Click, Client.Click, Logout.Click
+        Dim clickedLinkLabel = DirectCast(sender, ToolStripMenuItem)
 
         Select Case clickedLinkLabel.Name
-            Case "loginLinkLabel"
+            Case LOGIN_MENU
                 LoadForm(New LoginForm)
-            Case "logoutLinkLabel"
+            Case LOGOUT_MENU
                 mainPanel.Controls.Clear()
                 ShowNavBeforeLogin()
-            Case "homeLinkLabel"
+            Case HOME_MENU
                 LoadForm(New PlanListForm)
-            'Case "planListLinkLabel"
-            '    LoadForm(New PlanListForm)
-            Case "planManageLinkLabel"
+            Case PLAN_MENU
                 LoadForm(New PlanManage)
-            Case "clientLinkLabel"
+            Case CLIENT_MENU
                 LoadForm(New ClientForm)
-            Case "projectLinkLabel"
+            Case PROJECT_MENU
                 LoadForm(New ProjectForm)
             Case Else
                 MessageBox.Show("Unknown LinkLabel clicked")
         End Select
+    End Sub
+
+    Private Sub loginButton_Click(sender As Object, e As EventArgs) Handles loginButton.Click
+        LoadForm(New LoginForm)
     End Sub
 End Class

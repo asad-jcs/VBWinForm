@@ -73,4 +73,62 @@ Public Class TaskInfoService
             })
         End Using
     End Sub
+
+    Public Function GetAllBySearchKey(searchKey As String)
+
+        Dim searchKeys As String() = searchKey.Split(New Char() {" "c}, StringSplitOptions.RemoveEmptyEntries)
+
+        ' Start building the SQL query
+        Dim query As String = "
+    SELECT 
+        ti.Id, ti.Title, ti.Description, ti.Start_Date, ti.End_Date, ti.Priority, 
+        ti.User_Id, ti.Completion, ti.Finishing_Date, us.Username, pj.Name AS ProjectName, 
+        pj.Id AS ProjectId 
+    FROM 
+        TASK.TASK_INFO ti 
+    LEFT JOIN 
+        AUTH.USER us ON ti.User_Id = us.Id 
+    LEFT JOIN 
+        TASK.Project pj ON ti.ProjectId = pj.Id
+    WHERE "
+
+        ' List to store conditions
+        Dim conditions As New List(Of String)()
+
+        ' Build conditions for each search term
+        For i As Integer = 0 To searchKeys.Length - 1
+            conditions.Add($"
+        (LOWER(ti.Title) LIKE @searchKey{i} OR 
+        LOWER(ti.Id) LIKE @searchKey{i} OR
+         LOWER(ti.Description) LIKE @searchKey{i} OR
+         LOWER(ti.Start_Date) LIKE @searchKey{i} OR
+         LOWER(ti.End_Date) LIKE @searchKey{i} OR
+         LOWER(ti.Priority) LIKE @searchKey{i} OR
+         LOWER(us.Username) LIKE @searchKey{i} OR
+         LOWER(ti.Completion) LIKE @searchKey{i} OR
+         LOWER(pj.Name) LIKE @searchKey{i})")
+        Next
+
+        ' Join all conditions with OR, so any match will work
+        query &= String.Join(" OR ", conditions)
+
+        ' Use DB2 connection with Dapper
+        Using connection As New DB2Connection(_dbContext.ConnectionString)
+            connection.Open()
+
+            ' Create parameters for each search key
+            Dim parameters As New DynamicParameters()
+            For i As Integer = 0 To searchKeys.Length - 1
+                parameters.Add($"@searchKey{i}", "%" & searchKeys(i).ToLower() & "%") ' Use wildcard for LIKE search
+            Next
+
+            ' Execute the query and map results to your view model
+            Dim result As List(Of UserTaskViewModel) = connection.Query(Of UserTaskViewModel)(query, parameters).ToList()
+
+            ' Return the result
+            Return result
+        End Using
+
+
+    End Function
 End Class

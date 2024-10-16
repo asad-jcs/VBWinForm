@@ -22,123 +22,145 @@ Partial Class Dashboard
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Dashboard))
         navPanel = New Panel()
-        projectLinkLabel = New LinkLabel()
-        clientLinkLabel = New LinkLabel()
-        planManageLinkLabel = New LinkLabel()
+        Panel1 = New Panel()
+        profilePictureBox = New PictureBox()
         pNameLabel = New Label()
-        logoutLinkLabel = New LinkLabel()
-        homeLinkLabel = New LinkLabel()
-        loginLinkLabel = New LinkLabel()
+        loginButton = New Button()
+        MenuStrip = New MenuStrip()
+        ManagementToolStripMenuItem = New ToolStripMenuItem()
+        Home = New ToolStripMenuItem()
+        Plan = New ToolStripMenuItem()
+        Project = New ToolStripMenuItem()
+        Client = New ToolStripMenuItem()
+        Logout = New ToolStripMenuItem()
         mainPanel = New Panel()
         welcomeLabel = New Label()
         navPanel.SuspendLayout()
+        Panel1.SuspendLayout()
+        CType(profilePictureBox, ComponentModel.ISupportInitialize).BeginInit()
+        MenuStrip.SuspendLayout()
         mainPanel.SuspendLayout()
         SuspendLayout()
         ' 
         ' navPanel
         ' 
         navPanel.BackColor = Color.FromArgb(CByte(155), CByte(89), CByte(182))
-        navPanel.Controls.Add(projectLinkLabel)
-        navPanel.Controls.Add(clientLinkLabel)
-        navPanel.Controls.Add(planManageLinkLabel)
-        navPanel.Controls.Add(pNameLabel)
-        navPanel.Controls.Add(logoutLinkLabel)
-        navPanel.Controls.Add(homeLinkLabel)
-        navPanel.Controls.Add(loginLinkLabel)
+        navPanel.Controls.Add(Panel1)
+        navPanel.Controls.Add(loginButton)
+        navPanel.Controls.Add(MenuStrip)
         navPanel.Dock = DockStyle.Left
         navPanel.Location = New Point(0, 0)
         navPanel.Name = "navPanel"
-        navPanel.Size = New Size(152, 450)
+        navPanel.Size = New Size(165, 450)
         navPanel.TabIndex = 0
         ' 
-        ' projectLinkLabel
+        ' Panel1
         ' 
-        projectLinkLabel.AutoSize = True
-        projectLinkLabel.LinkColor = Color.Yellow
-        projectLinkLabel.Location = New Point(2, 170)
-        projectLinkLabel.Name = "projectLinkLabel"
-        projectLinkLabel.Size = New Size(147, 20)
-        projectLinkLabel.TabIndex = 6
-        projectLinkLabel.TabStop = True
-        projectLinkLabel.Text = "Project Management"
-        projectLinkLabel.Visible = False
+        Panel1.Controls.Add(profilePictureBox)
+        Panel1.Controls.Add(pNameLabel)
+        Panel1.Dock = DockStyle.Bottom
+        Panel1.Location = New Point(0, 306)
+        Panel1.Name = "Panel1"
+        Panel1.Size = New Size(165, 50)
+        Panel1.TabIndex = 10
         ' 
-        ' clientLinkLabel
+        ' profilePictureBox
         ' 
-        clientLinkLabel.AutoSize = True
-        clientLinkLabel.LinkColor = Color.Yellow
-        clientLinkLabel.Location = New Point(3, 136)
-        clientLinkLabel.Name = "clientLinkLabel"
-        clientLinkLabel.Size = New Size(139, 20)
-        clientLinkLabel.TabIndex = 5
-        clientLinkLabel.TabStop = True
-        clientLinkLabel.Text = "Client Management"
-        clientLinkLabel.Visible = False
-        ' 
-        ' planManageLinkLabel
-        ' 
-        planManageLinkLabel.AutoSize = True
-        planManageLinkLabel.LinkColor = Color.Yellow
-        planManageLinkLabel.Location = New Point(3, 99)
-        planManageLinkLabel.Name = "planManageLinkLabel"
-        planManageLinkLabel.Size = New Size(129, 20)
-        planManageLinkLabel.TabIndex = 4
-        planManageLinkLabel.TabStop = True
-        planManageLinkLabel.Text = "Plan Management"
-        planManageLinkLabel.Visible = False
+        profilePictureBox.Dock = DockStyle.Left
+        profilePictureBox.Image = My.Resources.Resources.profile
+        profilePictureBox.Location = New Point(0, 0)
+        profilePictureBox.Name = "profilePictureBox"
+        profilePictureBox.Size = New Size(35, 50)
+        profilePictureBox.TabIndex = 9
+        profilePictureBox.TabStop = False
+        profilePictureBox.Visible = False
         ' 
         ' pNameLabel
         ' 
         pNameLabel.AutoSize = True
-        pNameLabel.Location = New Point(6, 9)
+        pNameLabel.Font = New Font("Segoe UI Black", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        pNameLabel.ImageAlign = ContentAlignment.MiddleLeft
+        pNameLabel.Location = New Point(41, 13)
         pNameLabel.Name = "pNameLabel"
-        pNameLabel.Size = New Size(0, 20)
+        pNameLabel.Size = New Size(100, 25)
         pNameLabel.TabIndex = 0
+        pNameLabel.Text = "Username"
+        pNameLabel.TextAlign = ContentAlignment.TopRight
+        pNameLabel.Visible = False
         ' 
-        ' logoutLinkLabel
+        ' loginButton
         ' 
-        logoutLinkLabel.AutoSize = True
-        logoutLinkLabel.LinkColor = Color.Yellow
-        logoutLinkLabel.Location = New Point(3, 36)
-        logoutLinkLabel.Name = "logoutLinkLabel"
-        logoutLinkLabel.Size = New Size(56, 20)
-        logoutLinkLabel.TabIndex = 2
-        logoutLinkLabel.TabStop = True
-        logoutLinkLabel.Text = "Logout"
-        logoutLinkLabel.Visible = False
+        loginButton.BackColor = Color.FromArgb(CByte(192), CByte(255), CByte(192))
+        loginButton.Dock = DockStyle.Bottom
+        loginButton.ForeColor = SystemColors.ActiveBorder
+        loginButton.Image = CType(resources.GetObject("loginButton.Image"), Image)
+        loginButton.Location = New Point(0, 356)
+        loginButton.Name = "loginButton"
+        loginButton.Size = New Size(165, 94)
+        loginButton.TabIndex = 8
+        loginButton.UseVisualStyleBackColor = False
         ' 
-        ' homeLinkLabel
+        ' MenuStrip
         ' 
-        homeLinkLabel.AutoSize = True
-        homeLinkLabel.LinkColor = Color.Yellow
-        homeLinkLabel.Location = New Point(3, 68)
-        homeLinkLabel.Name = "homeLinkLabel"
-        homeLinkLabel.Size = New Size(50, 20)
-        homeLinkLabel.TabIndex = 1
-        homeLinkLabel.TabStop = True
-        homeLinkLabel.Text = "Home"
-        homeLinkLabel.Visible = False
+        MenuStrip.BackColor = Color.FromArgb(CByte(128), CByte(128), CByte(255))
+        MenuStrip.ImageScalingSize = New Size(20, 20)
+        MenuStrip.Items.AddRange(New ToolStripItem() {ManagementToolStripMenuItem})
+        MenuStrip.Location = New Point(0, 0)
+        MenuStrip.Name = "MenuStrip"
+        MenuStrip.Size = New Size(165, 28)
+        MenuStrip.TabIndex = 7
+        MenuStrip.Text = "MenuStrip"
+        MenuStrip.Visible = False
         ' 
-        ' loginLinkLabel
+        ' ManagementToolStripMenuItem
         ' 
-        loginLinkLabel.AutoSize = True
-        loginLinkLabel.LinkColor = Color.Yellow
-        loginLinkLabel.Location = New Point(3, 36)
-        loginLinkLabel.Name = "loginLinkLabel"
-        loginLinkLabel.Size = New Size(46, 20)
-        loginLinkLabel.TabIndex = 0
-        loginLinkLabel.TabStop = True
-        loginLinkLabel.Text = "Login"
+        ManagementToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {Home, Plan, Project, Client, Logout})
+        ManagementToolStripMenuItem.Image = My.Resources.Resources.menu_button1
+        ManagementToolStripMenuItem.ImageAlign = ContentAlignment.MiddleLeft
+        ManagementToolStripMenuItem.Name = "ManagementToolStripMenuItem"
+        ManagementToolStripMenuItem.Size = New Size(80, 24)
+        ManagementToolStripMenuItem.Text = "Menu"
+        ' 
+        ' Home
+        ' 
+        Home.Name = "Home"
+        Home.Size = New Size(139, 26)
+        Home.Text = "Home"
+        ' 
+        ' Plan
+        ' 
+        Plan.Name = "Plan"
+        Plan.Size = New Size(139, 26)
+        Plan.Text = "Plan"
+        ' 
+        ' Project
+        ' 
+        Project.Name = "Project"
+        Project.Size = New Size(139, 26)
+        Project.Text = "Project"
+        ' 
+        ' Client
+        ' 
+        Client.Name = "Client"
+        Client.Size = New Size(139, 26)
+        Client.Text = "Client"
+        ' 
+        ' Logout
+        ' 
+        Logout.Name = "Logout"
+        Logout.Size = New Size(139, 26)
+        Logout.Text = "Logout"
         ' 
         ' mainPanel
         ' 
         mainPanel.BackColor = Color.FromArgb(CByte(189), CByte(195), CByte(199))
         mainPanel.Controls.Add(welcomeLabel)
         mainPanel.Dock = DockStyle.Fill
-        mainPanel.Location = New Point(152, 0)
+        mainPanel.Location = New Point(165, 0)
         mainPanel.Name = "mainPanel"
-        mainPanel.Size = New Size(648, 450)
+        mainPanel.Size = New Size(635, 450)
         mainPanel.TabIndex = 1
         ' 
         ' welcomeLabel
@@ -159,25 +181,35 @@ Partial Class Dashboard
         ClientSize = New Size(800, 450)
         Controls.Add(mainPanel)
         Controls.Add(navPanel)
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Name = "Dashboard"
-        Text = "Task Tracking App"
+        Text = "Task Management"
         WindowState = FormWindowState.Maximized
         navPanel.ResumeLayout(False)
         navPanel.PerformLayout()
+        Panel1.ResumeLayout(False)
+        Panel1.PerformLayout()
+        CType(profilePictureBox, ComponentModel.ISupportInitialize).EndInit()
+        MenuStrip.ResumeLayout(False)
+        MenuStrip.PerformLayout()
         mainPanel.ResumeLayout(False)
         mainPanel.PerformLayout()
         ResumeLayout(False)
     End Sub
 
     Friend WithEvents navPanel As Panel
-    Friend WithEvents loginLinkLabel As LinkLabel
     Friend WithEvents mainPanel As Panel
-    Friend WithEvents logoutLinkLabel As LinkLabel
-    Friend WithEvents homeLinkLabel As LinkLabel
     Friend WithEvents pNameLabel As Label
     Friend WithEvents planListLinkLabel As LinkLabel
     Friend WithEvents welcomeLabel As Label
-    Friend WithEvents planManageLinkLabel As LinkLabel
-    Friend WithEvents projectLinkLabel As LinkLabel
-    Friend WithEvents clientLinkLabel As LinkLabel
+    Friend WithEvents MenuStrip As MenuStrip
+    Friend WithEvents ManagementToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents Home As ToolStripMenuItem
+    Friend WithEvents Plan As ToolStripMenuItem
+    Friend WithEvents Project As ToolStripMenuItem
+    Friend WithEvents Client As ToolStripMenuItem
+    Friend WithEvents Logout As ToolStripMenuItem
+    Friend WithEvents loginButton As Button
+    Friend WithEvents profilePictureBox As PictureBox
+    Friend WithEvents Panel1 As Panel
 End Class

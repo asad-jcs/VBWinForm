@@ -201,4 +201,15 @@ Public Class PlanManage
         Util.LoadDropBox(userComboBox, _userService.GetAll(), "Username", "Id")
         Util.LoadDropBox(projectComboBox, _projectService.GetAll(), "Name", "Id")
     End Sub
+
+    Private Sub searchButton_Click(sender As Object, e As EventArgs) Handles searchButton.Click
+        Dim searchKey As String = searchTextBox.Text.Trim()
+        If searchKey Is "" Or searchKey Is Nothing Then
+            LoadPlanDataGridView()
+        Else
+            _listOfTask = _taskService.GetAllBySearchKey(searchKey)
+            Util.LoadGridView(planDataGridView, _listOfTask)
+        End If
+
+    End Sub
 End Class
