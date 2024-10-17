@@ -22,10 +22,19 @@ Partial Class PlanListForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PlanListForm))
         planTableLayoutPanel = New TableLayoutPanel()
         listPlanLabel = New Label()
         planListView = New ListView()
+        searchButton = New Button()
+        reloadButton = New Button()
+        searchTextBox = New TextBox()
+        panelListSplitContainer = New SplitContainer()
         planTableLayoutPanel.SuspendLayout()
+        CType(panelListSplitContainer, ComponentModel.ISupportInitialize).BeginInit()
+        panelListSplitContainer.Panel1.SuspendLayout()
+        panelListSplitContainer.Panel2.SuspendLayout()
+        panelListSplitContainer.SuspendLayout()
         SuspendLayout()
         ' 
         ' planTableLayoutPanel
@@ -62,27 +71,89 @@ Partial Class PlanListForm
         ' 
         planListView.BackColor = Color.FromArgb(CByte(189), CByte(195), CByte(199))
         planListView.Dock = DockStyle.Fill
-        planListView.Location = New Point(0, 57)
+        planListView.Location = New Point(0, 0)
         planListView.Name = "planListView"
-        planListView.Size = New Size(800, 393)
-        planListView.TabIndex = 18
+        planListView.Size = New Size(530, 393)
+        planListView.TabIndex = 28
         planListView.UseCompatibleStateImageBehavior = False
+        ' 
+        ' searchButton
+        ' 
+        searchButton.BackColor = Color.Bisque
+        searchButton.ForeColor = SystemColors.ActiveCaptionText
+        searchButton.Image = My.Resources.Resources.search
+        searchButton.ImageAlign = ContentAlignment.MiddleRight
+        searchButton.Location = New Point(11, 39)
+        searchButton.Name = "searchButton"
+        searchButton.Size = New Size(133, 29)
+        searchButton.TabIndex = 29
+        searchButton.Text = "Search"
+        searchButton.UseVisualStyleBackColor = False
+        ' 
+        ' reloadButton
+        ' 
+        reloadButton.BackColor = SystemColors.GradientInactiveCaption
+        reloadButton.ForeColor = SystemColors.ActiveCaptionText
+        reloadButton.Image = CType(resources.GetObject("reloadButton.Image"), Image)
+        reloadButton.ImageAlign = ContentAlignment.MiddleRight
+        reloadButton.Location = New Point(12, 74)
+        reloadButton.Name = "reloadButton"
+        reloadButton.Size = New Size(133, 29)
+        reloadButton.TabIndex = 31
+        reloadButton.Text = "Reload"
+        reloadButton.UseVisualStyleBackColor = False
+        ' 
+        ' searchTextBox
+        ' 
+        searchTextBox.Location = New Point(11, 6)
+        searchTextBox.Name = "searchTextBox"
+        searchTextBox.Size = New Size(251, 27)
+        searchTextBox.TabIndex = 30
+        ' 
+        ' panelListSplitContainer
+        ' 
+        panelListSplitContainer.AllowDrop = True
+        panelListSplitContainer.Dock = DockStyle.Fill
+        panelListSplitContainer.Location = New Point(0, 57)
+        panelListSplitContainer.Name = "panelListSplitContainer"
+        ' 
+        ' panelListSplitContainer.Panel1
+        ' 
+        panelListSplitContainer.Panel1.Controls.Add(searchTextBox)
+        panelListSplitContainer.Panel1.Controls.Add(searchButton)
+        panelListSplitContainer.Panel1.Controls.Add(reloadButton)
+        ' 
+        ' panelListSplitContainer.Panel2
+        ' 
+        panelListSplitContainer.Panel2.Controls.Add(planListView)
+        panelListSplitContainer.Size = New Size(800, 393)
+        panelListSplitContainer.SplitterDistance = 266
+        panelListSplitContainer.TabIndex = 32
         ' 
         ' PlanListForm
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(800, 450)
-        Controls.Add(planListView)
+        Controls.Add(panelListSplitContainer)
         Controls.Add(planTableLayoutPanel)
         Name = "PlanListForm"
         Text = "Plan List"
         planTableLayoutPanel.ResumeLayout(False)
         planTableLayoutPanel.PerformLayout()
+        panelListSplitContainer.Panel1.ResumeLayout(False)
+        panelListSplitContainer.Panel1.PerformLayout()
+        panelListSplitContainer.Panel2.ResumeLayout(False)
+        CType(panelListSplitContainer, ComponentModel.ISupportInitialize).EndInit()
+        panelListSplitContainer.ResumeLayout(False)
         ResumeLayout(False)
     End Sub
 
     Friend WithEvents planTableLayoutPanel As TableLayoutPanel
     Friend WithEvents listPlanLabel As Label
     Friend WithEvents planListView As ListView
+    Friend WithEvents searchButton As Button
+    Friend WithEvents reloadButton As Button
+    Friend WithEvents searchTextBox As TextBox
+    Friend WithEvents panelListSplitContainer As SplitContainer
 End Class

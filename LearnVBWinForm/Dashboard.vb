@@ -10,9 +10,12 @@ Public Class Dashboard
         ' This call is required by the designer.
         InitializeComponent()
         ServiceProvider.Register(Me)
+        trackTimer.Start()
+
         ' Add any initialization after the InitializeComponent() call.
 
     End Sub
+
 
 
     Public Sub LoadForm(form As Form)
@@ -104,5 +107,10 @@ Public Class Dashboard
 
     Private Sub loginButton_Click(sender As Object, e As EventArgs) Handles loginButton.Click
         LoadForm(New LoginForm)
+    End Sub
+
+    Private Sub trackTimer_Tick(sender As Object, e As EventArgs) Handles trackTimer.Tick
+        timePrintLabel.Text = DateTime.Now.ToLongTimeString()
+        datePrintLabel.Text = DateTime.Now.ToLongDateString()
     End Sub
 End Class

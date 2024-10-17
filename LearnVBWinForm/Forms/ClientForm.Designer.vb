@@ -22,9 +22,11 @@ Partial Class ClientForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ClientForm))
         clientTableLayoutPanel = New TableLayoutPanel()
         clientLabel = New Label()
         clientPanel = New Panel()
+        clearButton = New Button()
         emailTextBox = New TextBox()
         emailLabel = New Label()
         phoneTextBox = New TextBox()
@@ -37,7 +39,6 @@ Partial Class ClientForm
         cliNameTextBox = New TextBox()
         cTitleLabel = New Label()
         clientDataGridView = New DataGridView()
-        clearButton = New Button()
         clientTableLayoutPanel.SuspendLayout()
         clientPanel.SuspendLayout()
         CType(clientDataGridView, ComponentModel.ISupportInitialize).BeginInit()
@@ -94,6 +95,18 @@ Partial Class ClientForm
         clientPanel.Size = New Size(382, 393)
         clientPanel.TabIndex = 22
         ' 
+        ' clearButton
+        ' 
+        clearButton.BackColor = Color.Silver
+        clearButton.Image = My.Resources.Resources.icons8_clear_16
+        clearButton.ImageAlign = ContentAlignment.MiddleRight
+        clearButton.Location = New Point(282, 13)
+        clearButton.Name = "clearButton"
+        clearButton.Size = New Size(94, 29)
+        clearButton.TabIndex = 13
+        clearButton.Text = "Clear"
+        clearButton.UseVisualStyleBackColor = False
+        ' 
         ' emailTextBox
         ' 
         emailTextBox.Location = New Point(133, 236)
@@ -129,6 +142,8 @@ Partial Class ClientForm
         ' addButton
         ' 
         addButton.BackColor = Color.FromArgb(CByte(128), CByte(255), CByte(128))
+        addButton.Image = My.Resources.Resources.icons8_add_16
+        addButton.ImageAlign = ContentAlignment.MiddleRight
         addButton.Location = New Point(82, 272)
         addButton.Name = "addButton"
         addButton.Size = New Size(94, 29)
@@ -139,6 +154,8 @@ Partial Class ClientForm
         ' updateButton
         ' 
         updateButton.BackColor = Color.FromArgb(CByte(128), CByte(128), CByte(255))
+        updateButton.Image = My.Resources.Resources.icons8_update_16
+        updateButton.ImageAlign = ContentAlignment.MiddleRight
         updateButton.Location = New Point(182, 272)
         updateButton.Name = "updateButton"
         updateButton.Size = New Size(94, 29)
@@ -149,6 +166,8 @@ Partial Class ClientForm
         ' deleteButton
         ' 
         deleteButton.BackColor = Color.FromArgb(CByte(255), CByte(128), CByte(128))
+        deleteButton.Image = CType(resources.GetObject("deleteButton.Image"), Image)
+        deleteButton.ImageAlign = ContentAlignment.MiddleRight
         deleteButton.Location = New Point(282, 272)
         deleteButton.Name = "deleteButton"
         deleteButton.Size = New Size(94, 29)
@@ -199,16 +218,6 @@ Partial Class ClientForm
         clientDataGridView.RowHeadersWidth = 51
         clientDataGridView.Size = New Size(418, 393)
         clientDataGridView.TabIndex = 21
-        ' 
-        ' clearButton
-        ' 
-        clearButton.BackColor = Color.Silver
-        clearButton.Location = New Point(282, 13)
-        clearButton.Name = "clearButton"
-        clearButton.Size = New Size(94, 29)
-        clearButton.TabIndex = 13
-        clearButton.Text = "Clear"
-        clearButton.UseVisualStyleBackColor = False
         ' 
         ' ClientForm
         ' 

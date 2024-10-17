@@ -15,7 +15,7 @@ Public Class RegistrationForm
 
     End Sub
     Private Sub regButton_Click(sender As Object, e As EventArgs) Handles regButton.Click
-        Dim user = New User()
+        Dim user = New User
 
         user.Username = usernameTextBox.Text
         user.Email = emailTextBox.Text

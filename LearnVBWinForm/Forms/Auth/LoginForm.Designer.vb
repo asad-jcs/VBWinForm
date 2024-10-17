@@ -28,8 +28,8 @@ Partial Class LoginForm
         passwordTextBox = New TextBox()
         loginButton = New Button()
         loginTableLayoutPanel = New TableLayoutPanel()
-        regLinkLabel = New LinkLabel()
         loginLabel = New Label()
+        regButton = New Button()
         loginTableLayoutPanel.SuspendLayout()
         SuspendLayout()
         ' 
@@ -67,12 +67,15 @@ Partial Class LoginForm
         ' 
         ' loginButton
         ' 
+        loginButton.BackColor = Color.SpringGreen
+        loginButton.Image = My.Resources.Resources.icons8_login_16
+        loginButton.ImageAlign = ContentAlignment.MiddleRight
         loginButton.Location = New Point(189, 158)
         loginButton.Name = "loginButton"
         loginButton.Size = New Size(94, 29)
         loginButton.TabIndex = 8
         loginButton.Text = "Login"
-        loginButton.UseVisualStyleBackColor = True
+        loginButton.UseVisualStyleBackColor = False
         ' 
         ' loginTableLayoutPanel
         ' 
@@ -84,8 +87,8 @@ Partial Class LoginForm
         loginTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 21.7766514F))
         loginTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 14.8477163F))
         loginTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 20.3045712F))
-        loginTableLayoutPanel.Controls.Add(regLinkLabel, 0, 0)
         loginTableLayoutPanel.Controls.Add(loginLabel, 2, 0)
+        loginTableLayoutPanel.Controls.Add(regButton, 0, 0)
         loginTableLayoutPanel.Dock = DockStyle.Top
         loginTableLayoutPanel.Location = New Point(0, 0)
         loginTableLayoutPanel.Name = "loginTableLayoutPanel"
@@ -93,16 +96,6 @@ Partial Class LoginForm
         loginTableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Percent, 100F))
         loginTableLayoutPanel.Size = New Size(800, 57)
         loginTableLayoutPanel.TabIndex = 15
-        ' 
-        ' regLinkLabel
-        ' 
-        regLinkLabel.AutoSize = True
-        regLinkLabel.Location = New Point(3, 0)
-        regLinkLabel.Name = "regLinkLabel"
-        regLinkLabel.Size = New Size(89, 20)
-        regLinkLabel.TabIndex = 9
-        regLinkLabel.TabStop = True
-        regLinkLabel.Text = "Registration"
         ' 
         ' loginLabel
         ' 
@@ -114,6 +107,18 @@ Partial Class LoginForm
         loginLabel.Size = New Size(103, 47)
         loginLabel.TabIndex = 0
         loginLabel.Text = "Login"
+        ' 
+        ' regButton
+        ' 
+        regButton.BackColor = Color.DarkKhaki
+        regButton.Image = My.Resources.Resources.icons8_registration_16
+        regButton.ImageAlign = ContentAlignment.MiddleRight
+        regButton.Location = New Point(3, 3)
+        regButton.Name = "regButton"
+        regButton.Size = New Size(134, 29)
+        regButton.TabIndex = 16
+        regButton.Text = "Registration"
+        regButton.UseVisualStyleBackColor = False
         ' 
         ' LoginForm
         ' 
@@ -143,7 +148,7 @@ Partial Class LoginForm
     Friend WithEvents passwordTextBox As TextBox
     Friend WithEvents loginButton As Button
     Friend WithEvents loginTableLayoutPanel As TableLayoutPanel
-    Friend WithEvents regLinkLabel As LinkLabel
     Friend WithEvents loginLabel As Label
+    Friend WithEvents regButton As Button
 
 End Class

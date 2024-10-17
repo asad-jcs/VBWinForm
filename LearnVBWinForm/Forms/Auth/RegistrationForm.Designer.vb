@@ -31,9 +31,9 @@ Partial Class RegistrationForm
         cnfPasswordLabel = New Label()
         cnfPasswordTextBox = New TextBox()
         regButton = New Button()
-        Panel1 = New Panel()
-        registrationLabel = New Label()
-        Panel1.SuspendLayout()
+        loginTableLayoutPanel = New TableLayoutPanel()
+        loginLabel = New Label()
+        loginTableLayoutPanel.SuspendLayout()
         SuspendLayout()
         ' 
         ' emailTextBox
@@ -102,33 +102,45 @@ Partial Class RegistrationForm
         ' 
         ' regButton
         ' 
+        regButton.BackColor = Color.BlueViolet
+        regButton.Image = My.Resources.Resources.icons8_create_16
+        regButton.ImageAlign = ContentAlignment.MiddleRight
         regButton.Location = New Point(241, 228)
         regButton.Name = "regButton"
         regButton.Size = New Size(119, 34)
         regButton.TabIndex = 8
-        regButton.Text = "Registration"
-        regButton.UseVisualStyleBackColor = True
+        regButton.Text = "Create"
+        regButton.UseVisualStyleBackColor = False
         ' 
-        ' Panel1
+        ' loginTableLayoutPanel
         ' 
-        Panel1.BackColor = Color.FromArgb(CByte(44), CByte(62), CByte(80))
-        Panel1.Controls.Add(registrationLabel)
-        Panel1.Dock = DockStyle.Top
-        Panel1.Location = New Point(0, 0)
-        Panel1.Name = "Panel1"
-        Panel1.Size = New Size(800, 54)
-        Panel1.TabIndex = 15
+        loginTableLayoutPanel.BackColor = Color.FromArgb(CByte(44), CByte(62), CByte(80))
+        loginTableLayoutPanel.BackgroundImageLayout = ImageLayout.Center
+        loginTableLayoutPanel.ColumnCount = 5
+        loginTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 20.3065987F))
+        loginTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 22.7687759F))
+        loginTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 29.79963F))
+        loginTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 6.81840134F))
+        loginTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 20.3065987F))
+        loginTableLayoutPanel.Controls.Add(loginLabel, 2, 0)
+        loginTableLayoutPanel.Dock = DockStyle.Top
+        loginTableLayoutPanel.Location = New Point(0, 0)
+        loginTableLayoutPanel.Name = "loginTableLayoutPanel"
+        loginTableLayoutPanel.RowCount = 1
+        loginTableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Percent, 100F))
+        loginTableLayoutPanel.Size = New Size(800, 57)
+        loginTableLayoutPanel.TabIndex = 16
         ' 
-        ' registrationLabel
+        ' loginLabel
         ' 
-        registrationLabel.AutoSize = True
-        registrationLabel.Font = New Font("Comic Sans MS", 20F)
-        registrationLabel.ForeColor = SystemColors.ControlLightLight
-        registrationLabel.Location = New Point(338, 0)
-        registrationLabel.Name = "registrationLabel"
-        registrationLabel.Size = New Size(216, 47)
-        registrationLabel.TabIndex = 0
-        registrationLabel.Text = "Registration"
+        loginLabel.AutoSize = True
+        loginLabel.Font = New Font("Comic Sans MS", 20F)
+        loginLabel.ForeColor = SystemColors.ControlLightLight
+        loginLabel.Location = New Point(347, 0)
+        loginLabel.Name = "loginLabel"
+        loginLabel.Size = New Size(216, 47)
+        loginLabel.TabIndex = 0
+        loginLabel.Text = "Registration"
         ' 
         ' RegistrationForm
         ' 
@@ -137,7 +149,7 @@ Partial Class RegistrationForm
         BackColor = Color.FromArgb(CByte(189), CByte(195), CByte(199))
         ClientSize = New Size(800, 450)
         ControlBox = False
-        Controls.Add(Panel1)
+        Controls.Add(loginTableLayoutPanel)
         Controls.Add(regButton)
         Controls.Add(cnfPasswordLabel)
         Controls.Add(cnfPasswordTextBox)
@@ -150,8 +162,8 @@ Partial Class RegistrationForm
         Name = "RegistrationForm"
         Text = "RegistrationForm"
         WindowState = FormWindowState.Maximized
-        Panel1.ResumeLayout(False)
-        Panel1.PerformLayout()
+        loginTableLayoutPanel.ResumeLayout(False)
+        loginTableLayoutPanel.PerformLayout()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -165,6 +177,6 @@ Partial Class RegistrationForm
     Friend WithEvents cnfPasswordLabel As Label
     Friend WithEvents cnfPasswordTextBox As TextBox
     Friend WithEvents regButton As Button
-    Friend WithEvents Panel1 As Panel
-    Friend WithEvents registrationLabel As Label
+    Friend WithEvents loginTableLayoutPanel As TableLayoutPanel
+    Friend WithEvents loginLabel As Label
 End Class

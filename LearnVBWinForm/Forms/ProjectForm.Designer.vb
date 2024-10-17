@@ -22,6 +22,7 @@ Partial Class ProjectForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ProjectForm))
         projectTableLayoutPanel = New TableLayoutPanel()
         projectLabel = New Label()
         projectDataGridView = New DataGridView()
@@ -103,16 +104,21 @@ Partial Class ProjectForm
         ' 
         ' clearButton
         ' 
+        clearButton.BackColor = SystemColors.ActiveBorder
+        clearButton.Image = CType(resources.GetObject("clearButton.Image"), Image)
+        clearButton.ImageAlign = ContentAlignment.MiddleRight
         clearButton.Location = New Point(282, 13)
         clearButton.Name = "clearButton"
         clearButton.Size = New Size(94, 29)
         clearButton.TabIndex = 9
         clearButton.Text = "Clear"
-        clearButton.UseVisualStyleBackColor = True
+        clearButton.UseVisualStyleBackColor = False
         ' 
         ' addButton
         ' 
         addButton.BackColor = Color.FromArgb(CByte(128), CByte(255), CByte(128))
+        addButton.Image = My.Resources.Resources.icons8_add_16
+        addButton.ImageAlign = ContentAlignment.MiddleRight
         addButton.Location = New Point(82, 245)
         addButton.Name = "addButton"
         addButton.Size = New Size(94, 29)
@@ -123,6 +129,8 @@ Partial Class ProjectForm
         ' updateButton
         ' 
         updateButton.BackColor = Color.FromArgb(CByte(128), CByte(128), CByte(255))
+        updateButton.Image = My.Resources.Resources.icons8_update_16
+        updateButton.ImageAlign = ContentAlignment.MiddleRight
         updateButton.Location = New Point(182, 245)
         updateButton.Name = "updateButton"
         updateButton.Size = New Size(94, 29)
@@ -133,6 +141,8 @@ Partial Class ProjectForm
         ' deleteButton
         ' 
         deleteButton.BackColor = Color.FromArgb(CByte(255), CByte(128), CByte(128))
+        deleteButton.Image = CType(resources.GetObject("deleteButton.Image"), Image)
+        deleteButton.ImageAlign = ContentAlignment.MiddleRight
         deleteButton.Location = New Point(282, 245)
         deleteButton.Name = "deleteButton"
         deleteButton.Size = New Size(94, 29)

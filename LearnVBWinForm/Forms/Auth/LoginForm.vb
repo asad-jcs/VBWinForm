@@ -41,10 +41,7 @@ Public Class LoginForm
         End If
     End Sub
 
-    Private Sub regLinkLabel_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles regLinkLabel.LinkClicked
-        'Me.Hide()
+    Private Sub regButton_Click(sender As Object, e As EventArgs) Handles regButton.Click
         mainForm.LoadForm(New RegistrationForm())
     End Sub
-
-
 End Class

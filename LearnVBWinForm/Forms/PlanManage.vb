@@ -55,6 +55,7 @@ Public Class PlanManage
             If _taskInfo.Id > 0 Then
                 updteButton.Enabled = True
                 deleteButton.Enabled = True
+                addButton.Enabled = False
 
                 titleTextBox.Text = selectedRow.Cells("Title").Value.ToString()
                 descTextBox.Text = selectedRow.Cells("Description").Value.ToString()
@@ -77,6 +78,10 @@ Public Class PlanManage
                 completionTextBox.Text = selectedRow.Cells("Completion").Value
 
                 userComboBox.SelectedValue = selectedRow.Cells("User_Id").Value.ToString()
+                projectComboBox.SelectedValue = selectedRow.Cells("ProjectId").Value.ToString()
+                Dim val = selectedRow.Cells("Priority").Value.ToString()
+                priorityComboBox.SelectedValue = val
+
 
             End If
         End If
@@ -184,6 +189,7 @@ Public Class PlanManage
 
         taskInfo.ProjectId = projectComboBox.SelectedValue
         taskInfo.UserID = userComboBox.SelectedValue
+        taskInfo.Priority = priorityComboBox.SelectedValue
         _taskService.Add(taskInfo)
 
         MessageBox.Show("Task Has Registered Successfully")
@@ -193,10 +199,19 @@ Public Class PlanManage
     End Sub
 
     Private Sub LoadDropdown()
+
+        Dim priorityList As New DataTable()
+        priorityList.Columns.Add("Value", GetType(String))
+        priorityList.Columns.Add("Display", GetType(String))
+
         _priorityDictionary = Util.PriorityList()
         For Each kvp As KeyValuePair(Of String, String) In _priorityDictionary
-            priorityComboBox.Items.Add(kvp.Value)
+            priorityList.Rows.Add(kvp.Key, kvp.Value)
         Next
+
+        priorityComboBox.DataSource = priorityList
+        priorityComboBox.DisplayMember = "Display"
+        priorityComboBox.ValueMember = "Value"
 
         Util.LoadDropBox(userComboBox, _userService.GetAll(), "Username", "Id")
         Util.LoadDropBox(projectComboBox, _projectService.GetAll(), "Name", "Id")
@@ -211,5 +226,16 @@ Public Class PlanManage
             Util.LoadGridView(planDataGridView, _listOfTask)
         End If
 
+    End Sub
+
+    Private Sub reloadButton_Click(sender As Object, e As EventArgs) Handles reloadButton.Click
+        LoadPlanDataGridView()
+    End Sub
+
+    Private Sub clearButton_Click(sender As Object, e As EventArgs) Handles clearButton.Click
+        Util.ClearAllInputs(Me)
+        addButton.Enabled = True
+        updteButton.Enabled = False
+        deleteButton.Enabled = False
     End Sub
 End Class
