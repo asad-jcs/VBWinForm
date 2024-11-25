@@ -45,13 +45,13 @@ Public Class PlanListForm
     End Sub
 
     Private Sub reloadButton_Click(sender As Object, e As EventArgs) Handles reloadButton.Click
-        _listOfPlans = _taskInfoService.GetAll
+        _listOfPlans = _taskInfoService.GetAll().ResModel
         LoadListView(_listOfPlans)
     End Sub
 
     Private Sub searchButton_Click(sender As Object, e As EventArgs) Handles searchButton.Click
         Dim searchKey = searchTextBox.Text
-        _listOfPlans = _taskInfoService.GetAllBySearchKey(searchKey)
+        _listOfPlans = _taskInfoService.GetAllBySearchKey(searchKey).ResModel
         LoadListView(_listOfPlans)
     End Sub
 

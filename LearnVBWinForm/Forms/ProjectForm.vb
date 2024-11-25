@@ -12,9 +12,18 @@ Public Class ProjectForm
         InitializeComponent()
         _projectService = New ProjectService()
         _clientService = New ClientService()
+        Init()
+        ' Add any initialization after the InitializeComponent() call.
+    End Sub
+
+    Private Sub Init()
+        Util.ClearAllInputs(Me)
+        addButton.Enabled = True
+        updateButton.Enabled = False
+        deleteButton.Enabled = False
+
         LoadDataGridView()
         LoadComboBox()
-        ' Add any initialization after the InitializeComponent() call.
     End Sub
 
     Private Sub LoadComboBox()
@@ -29,10 +38,7 @@ Public Class ProjectForm
     End Sub
 
     Private Sub clearButton_Click(sender As Object, e As EventArgs) Handles clearButton.Click
-        Util.ClearAllInputs(Me)
-        addButton.Enabled = True
-        updateButton.Enabled = False
-        deleteButton.Enabled = False
+        Init()
     End Sub
 
     Private Sub addButton_Click(sender As Object, e As EventArgs) Handles addButton.Click

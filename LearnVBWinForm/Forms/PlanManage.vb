@@ -265,7 +265,7 @@ Public Class PlanManage
         If searchKey Is "" Or searchKey Is Nothing Then
             LoadPlanDataGridView()
         Else
-            _listOfTask = _taskService.GetAllBySearchKey(searchKey)
+            _listOfTask = _taskService.GetAllBySearchKey(searchKey).ResModel
             Util.LoadGridView(planDataGridView, _listOfTask)
         End If
 

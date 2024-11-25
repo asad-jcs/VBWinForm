@@ -8,9 +8,18 @@ Public Class ClientForm
 
         ' This call is required by the designer.
         InitializeComponent()
-        LoadClient()
+        Init()
         ' Add any initialization after the InitializeComponent() call.
 
+    End Sub
+
+    Private Sub Init()
+        Util.ClearAllInputs(Me)
+        addButton.Enabled = True
+        updateButton.Enabled = False
+        deleteButton.Enabled = False
+
+        LoadClient()
     End Sub
 
     Private Sub LoadClient()
@@ -117,10 +126,13 @@ Public Class ClientForm
     End Sub
 
     Private Sub clearButton_Click(sender As Object, e As EventArgs) Handles clearButton.Click
-        Util.ClearAllInputs(Me)
-        addButton.Enabled = True
-        updateButton.Enabled = False
-        deleteButton.Enabled = False
-        Util.LoadGridView(clientDataGridView, _clientService.GetAll().ResModel)
+        'Util.ClearAllInputs(Me)
+        'addButton.Enabled = True
+        'updateButton.Enabled = False
+        'deleteButton.Enabled = False
+        'Util.LoadGridView(clientDataGridView, _clientService.GetAll().ResModel)
+        Init()
     End Sub
+
+
 End Class
