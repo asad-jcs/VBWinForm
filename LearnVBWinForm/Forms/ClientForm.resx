@@ -120,10 +120,10 @@
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="deleteButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAACxIAAAsSAdLdfvwAAABmSURBVDhPYxjUwBeIfwLxfyD+AeUTBDZAXA7Fu6EYnQ3C
-        IHVYgQsQg2zswINB8iB1OAFIAT5ASB6ugBCNE4wagFAAijJsNEEDQKlPGMLEACBxUKrEC1qAGJaE0TFI
-        vBmIBw1gYAAAgcg4BoFShkoAAAAASUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DAAACwwBP0AiyAAAAGZJREFUOE9jGNTAF4h/AvF/IP4B5RMENkBcDsW7oRidDcIgdViBCxCDbOzAg0Hy
+        IHU4AUgBPkBIHq6AEI0TjBqAUACKMmw0QQNAqU8YwsQAIHFQqsQLWoAYloTRMUi8GYgHDWBgAACByDgG
+        gVKGSgAAAABJRU5ErkJggg==
 </value>
   </data>
 </root>

@@ -9,7 +9,8 @@ Public Class PlanListForm
         ' This call is required by the designer.
         InitializeComponent()
         _taskInfoService = New TaskInfoService()
-        _listOfPlans = _taskInfoService.GetAll()
+        Dim result As Result = _taskInfoService.GetAll()
+        _listOfPlans = result.ResModel
         LoadListView(_listOfPlans)
         ' Add any initialization after the InitializeComponent() call.
 

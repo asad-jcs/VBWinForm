@@ -22,23 +22,26 @@ Partial Class LoginForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        emailTextBox = New TextBox()
+        emailReqTextBox = New TextBox()
         emailLabel = New Label()
         passwordLabel = New Label()
-        passwordTextBox = New TextBox()
+        passwordReqTextBox = New TextBox()
         loginButton = New Button()
         loginTableLayoutPanel = New TableLayoutPanel()
         loginLabel = New Label()
         regButton = New Button()
+        messagePanel = New Panel()
+        msgLabel = New Label()
         loginTableLayoutPanel.SuspendLayout()
+        messagePanel.SuspendLayout()
         SuspendLayout()
         ' 
-        ' emailTextBox
+        ' emailReqTextBox
         ' 
-        emailTextBox.Location = New Point(113, 92)
-        emailTextBox.Name = "emailTextBox"
-        emailTextBox.Size = New Size(170, 27)
-        emailTextBox.TabIndex = 0
+        emailReqTextBox.Location = New Point(113, 92)
+        emailReqTextBox.Name = "emailReqTextBox"
+        emailReqTextBox.Size = New Size(170, 27)
+        emailReqTextBox.TabIndex = 0
         ' 
         ' emailLabel
         ' 
@@ -58,23 +61,24 @@ Partial Class LoginForm
         passwordLabel.TabIndex = 7
         passwordLabel.Text = "Password"
         ' 
-        ' passwordTextBox
+        ' passwordReqTextBox
         ' 
-        passwordTextBox.Location = New Point(113, 125)
-        passwordTextBox.Name = "passwordTextBox"
-        passwordTextBox.Size = New Size(170, 27)
-        passwordTextBox.TabIndex = 6
+        passwordReqTextBox.Location = New Point(113, 125)
+        passwordReqTextBox.Name = "passwordReqTextBox"
+        passwordReqTextBox.Size = New Size(170, 27)
+        passwordReqTextBox.TabIndex = 6
         ' 
         ' loginButton
         ' 
         loginButton.BackColor = Color.SpringGreen
+        loginButton.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         loginButton.Image = My.Resources.Resources.icons8_login_16
         loginButton.ImageAlign = ContentAlignment.MiddleRight
-        loginButton.Location = New Point(189, 158)
+        loginButton.Location = New Point(189, 157)
         loginButton.Name = "loginButton"
         loginButton.Size = New Size(94, 29)
         loginButton.TabIndex = 8
-        loginButton.Text = "Login"
+        loginButton.Text = "Sign In"
         loginButton.UseVisualStyleBackColor = False
         ' 
         ' loginTableLayoutPanel
@@ -111,6 +115,7 @@ Partial Class LoginForm
         ' regButton
         ' 
         regButton.BackColor = Color.DarkKhaki
+        regButton.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         regButton.Image = My.Resources.Resources.icons8_registration_16
         regButton.ImageAlign = ContentAlignment.MiddleRight
         regButton.Location = New Point(3, 3)
@@ -120,35 +125,61 @@ Partial Class LoginForm
         regButton.Text = "Registration"
         regButton.UseVisualStyleBackColor = False
         ' 
+        ' messagePanel
+        ' 
+        messagePanel.Controls.Add(msgLabel)
+        messagePanel.Dock = DockStyle.Bottom
+        messagePanel.Location = New Point(0, 326)
+        messagePanel.Margin = New Padding(10, 11, 10, 11)
+        messagePanel.Name = "messagePanel"
+        messagePanel.Size = New Size(800, 125)
+        messagePanel.TabIndex = 19
+        ' 
+        ' msgLabel
+        ' 
+        msgLabel.AutoSize = True
+        msgLabel.Dock = DockStyle.Top
+        msgLabel.Font = New Font("Comic Sans MS", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        msgLabel.Location = New Point(0, 0)
+        msgLabel.Margin = New Padding(10, 11, 10, 11)
+        msgLabel.Name = "msgLabel"
+        msgLabel.Size = New Size(0, 25)
+        msgLabel.TabIndex = 0
+        ' 
         ' LoginForm
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.FromArgb(CByte(189), CByte(195), CByte(199))
-        ClientSize = New Size(800, 450)
+        ClientSize = New Size(800, 451)
         ControlBox = False
+        Controls.Add(messagePanel)
         Controls.Add(loginTableLayoutPanel)
         Controls.Add(loginButton)
         Controls.Add(passwordLabel)
-        Controls.Add(passwordTextBox)
+        Controls.Add(passwordReqTextBox)
         Controls.Add(emailLabel)
-        Controls.Add(emailTextBox)
+        Controls.Add(emailReqTextBox)
         Name = "LoginForm"
         Text = "Login"
         WindowState = FormWindowState.Maximized
         loginTableLayoutPanel.ResumeLayout(False)
         loginTableLayoutPanel.PerformLayout()
+        messagePanel.ResumeLayout(False)
+        messagePanel.PerformLayout()
         ResumeLayout(False)
         PerformLayout()
     End Sub
 
-    Friend WithEvents emailTextBox As TextBox
+    Friend WithEvents emailReqTextBox As TextBox
     Friend WithEvents emailLabel As Label
     Friend WithEvents passwordLabel As Label
-    Friend WithEvents passwordTextBox As TextBox
+    Friend WithEvents passwordReqTextBox As TextBox
     Friend WithEvents loginButton As Button
     Friend WithEvents loginTableLayoutPanel As TableLayoutPanel
     Friend WithEvents loginLabel As Label
     Friend WithEvents regButton As Button
+    Friend WithEvents messagePanel As Panel
+    Friend WithEvents msgLabel As Label
 
 End Class

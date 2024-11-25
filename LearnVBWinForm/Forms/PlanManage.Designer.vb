@@ -28,35 +28,37 @@ Partial Class PlanManage
         planDataGridView = New DataGridView()
         editPanel = New Panel()
         clearButton = New Button()
-        priorityComboBox = New ComboBox()
+        priorityReqComboBox = New ComboBox()
         Label1 = New Label()
         addButton = New Button()
-        projectComboBox = New ComboBox()
+        projectReqComboBox = New ComboBox()
         projectLabel = New Label()
         deleteButton = New Button()
         updteButton = New Button()
-        userComboBox = New ComboBox()
+        userReqComboBox = New ComboBox()
         userLabel = New Label()
-        finishDateTimePicker = New DateTimePicker()
         finishDateLabel = New Label()
         completionTextBox = New TextBox()
         completionLabel = New Label()
-        endDateTimePicker = New DateTimePicker()
-        startDateTimePicker = New DateTimePicker()
+        endReqDateTimePicker = New DateTimePicker()
+        startReqDateTimePicker = New DateTimePicker()
         endDateLabel = New Label()
         startDateLabel = New Label()
         descTextBox = New TextBox()
         descriptionLabel = New Label()
-        titleTextBox = New TextBox()
+        titleReqTextBox = New TextBox()
         titleLabel = New Label()
         searchTextBox = New TextBox()
         searchButton = New Button()
         Panel1 = New Panel()
+        messagePanel = New Panel()
+        msgLabel = New Label()
         reloadButton = New Button()
         planManageTableLayoutPanel.SuspendLayout()
         CType(planDataGridView, ComponentModel.ISupportInitialize).BeginInit()
         editPanel.SuspendLayout()
         Panel1.SuspendLayout()
+        messagePanel.SuspendLayout()
         SuspendLayout()
         ' 
         ' planManageTableLayoutPanel
@@ -64,26 +66,26 @@ Partial Class PlanManage
         planManageTableLayoutPanel.BackColor = Color.FromArgb(CByte(44), CByte(62), CByte(80))
         planManageTableLayoutPanel.BackgroundImageLayout = ImageLayout.Center
         planManageTableLayoutPanel.ColumnCount = 5
-        planManageTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 20F))
-        planManageTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 10F))
-        planManageTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 40F))
-        planManageTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 10F))
-        planManageTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 20F))
+        planManageTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 20.0F))
+        planManageTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 24.0F))
+        planManageTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 30.0F))
+        planManageTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 6.0F))
+        planManageTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 20.0F))
         planManageTableLayoutPanel.Controls.Add(planMngLabel, 2, 0)
         planManageTableLayoutPanel.Dock = DockStyle.Top
         planManageTableLayoutPanel.Location = New Point(0, 0)
         planManageTableLayoutPanel.Name = "planManageTableLayoutPanel"
         planManageTableLayoutPanel.RowCount = 1
-        planManageTableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Percent, 100F))
+        planManageTableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Percent, 100.0F))
         planManageTableLayoutPanel.Size = New Size(1352, 57)
         planManageTableLayoutPanel.TabIndex = 18
         ' 
         ' planMngLabel
         ' 
         planMngLabel.AutoSize = True
-        planMngLabel.Font = New Font("Comic Sans MS", 20F)
+        planMngLabel.Font = New Font("Comic Sans MS", 20.0F)
         planMngLabel.ForeColor = SystemColors.ControlLightLight
-        planMngLabel.Location = New Point(408, 0)
+        planMngLabel.Location = New Point(597, 0)
         planMngLabel.Name = "planMngLabel"
         planMngLabel.Size = New Size(289, 47)
         planMngLabel.TabIndex = 0
@@ -97,35 +99,34 @@ Partial Class PlanManage
         planDataGridView.Location = New Point(424, 97)
         planDataGridView.Name = "planDataGridView"
         planDataGridView.RowHeadersWidth = 51
-        planDataGridView.Size = New Size(1100, 451)
+        planDataGridView.Size = New Size(1099, 451)
         planDataGridView.TabIndex = 19
         ' 
         ' editPanel
         ' 
         editPanel.BackColor = SystemColors.ActiveCaption
         editPanel.Controls.Add(clearButton)
-        editPanel.Controls.Add(priorityComboBox)
+        editPanel.Controls.Add(priorityReqComboBox)
         editPanel.Controls.Add(Label1)
         editPanel.Controls.Add(addButton)
-        editPanel.Controls.Add(projectComboBox)
+        editPanel.Controls.Add(projectReqComboBox)
         editPanel.Controls.Add(projectLabel)
         editPanel.Controls.Add(deleteButton)
         editPanel.Controls.Add(updteButton)
-        editPanel.Controls.Add(userComboBox)
+        editPanel.Controls.Add(userReqComboBox)
         editPanel.Controls.Add(userLabel)
-        editPanel.Controls.Add(finishDateTimePicker)
         editPanel.Controls.Add(finishDateLabel)
         editPanel.Controls.Add(completionTextBox)
         editPanel.Controls.Add(completionLabel)
-        editPanel.Controls.Add(endDateTimePicker)
-        editPanel.Controls.Add(startDateTimePicker)
+        editPanel.Controls.Add(endReqDateTimePicker)
+        editPanel.Controls.Add(startReqDateTimePicker)
         editPanel.Controls.Add(endDateLabel)
         editPanel.Controls.Add(startDateLabel)
         editPanel.Controls.Add(descTextBox)
         editPanel.Controls.Add(descriptionLabel)
-        editPanel.Controls.Add(titleTextBox)
+        editPanel.Controls.Add(titleReqTextBox)
         editPanel.Controls.Add(titleLabel)
-        editPanel.Location = New Point(12, 63)
+        editPanel.Location = New Point(11, 63)
         editPanel.Name = "editPanel"
         editPanel.Size = New Size(406, 485)
         editPanel.TabIndex = 20
@@ -133,6 +134,7 @@ Partial Class PlanManage
         ' clearButton
         ' 
         clearButton.BackColor = Color.Silver
+        clearButton.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold)
         clearButton.Image = My.Resources.Resources.icons8_clear_16
         clearButton.ImageAlign = ContentAlignment.MiddleRight
         clearButton.Location = New Point(299, 3)
@@ -142,13 +144,13 @@ Partial Class PlanManage
         clearButton.Text = "Clear"
         clearButton.UseVisualStyleBackColor = False
         ' 
-        ' priorityComboBox
+        ' priorityReqComboBox
         ' 
-        priorityComboBox.FormattingEnabled = True
-        priorityComboBox.Location = New Point(132, 357)
-        priorityComboBox.Name = "priorityComboBox"
-        priorityComboBox.Size = New Size(261, 28)
-        priorityComboBox.TabIndex = 23
+        priorityReqComboBox.FormattingEnabled = True
+        priorityReqComboBox.Location = New Point(133, 357)
+        priorityReqComboBox.Name = "priorityReqComboBox"
+        priorityReqComboBox.Size = New Size(261, 28)
+        priorityReqComboBox.TabIndex = 23
         ' 
         ' Label1
         ' 
@@ -162,22 +164,23 @@ Partial Class PlanManage
         ' addButton
         ' 
         addButton.BackColor = Color.FromArgb(CByte(128), CByte(255), CByte(128))
+        addButton.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold)
         addButton.Image = My.Resources.Resources.icons8_add_16
         addButton.ImageAlign = ContentAlignment.MiddleRight
-        addButton.Location = New Point(99, 430)
+        addButton.Location = New Point(99, 429)
         addButton.Name = "addButton"
         addButton.Size = New Size(94, 29)
         addButton.TabIndex = 21
         addButton.Text = "Add"
         addButton.UseVisualStyleBackColor = False
         ' 
-        ' projectComboBox
+        ' projectReqComboBox
         ' 
-        projectComboBox.FormattingEnabled = True
-        projectComboBox.Location = New Point(132, 320)
-        projectComboBox.Name = "projectComboBox"
-        projectComboBox.Size = New Size(261, 28)
-        projectComboBox.TabIndex = 20
+        projectReqComboBox.FormattingEnabled = True
+        projectReqComboBox.Location = New Point(133, 320)
+        projectReqComboBox.Name = "projectReqComboBox"
+        projectReqComboBox.Size = New Size(261, 28)
+        projectReqComboBox.TabIndex = 20
         ' 
         ' projectLabel
         ' 
@@ -192,9 +195,10 @@ Partial Class PlanManage
         ' 
         deleteButton.BackColor = Color.FromArgb(CByte(255), CByte(128), CByte(128))
         deleteButton.Enabled = False
+        deleteButton.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold)
         deleteButton.Image = CType(resources.GetObject("deleteButton.Image"), Image)
         deleteButton.ImageAlign = ContentAlignment.MiddleRight
-        deleteButton.Location = New Point(299, 430)
+        deleteButton.Location = New Point(299, 429)
         deleteButton.Name = "deleteButton"
         deleteButton.Size = New Size(94, 29)
         deleteButton.TabIndex = 18
@@ -205,22 +209,24 @@ Partial Class PlanManage
         ' 
         updteButton.BackColor = Color.FromArgb(CByte(128), CByte(128), CByte(255))
         updteButton.Enabled = False
+        updteButton.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold)
+        updteButton.ForeColor = SystemColors.ButtonHighlight
         updteButton.Image = My.Resources.Resources.icons8_update_16
         updteButton.ImageAlign = ContentAlignment.MiddleRight
-        updteButton.Location = New Point(199, 430)
+        updteButton.Location = New Point(199, 429)
         updteButton.Name = "updteButton"
         updteButton.Size = New Size(94, 29)
         updteButton.TabIndex = 17
         updteButton.Text = "Update"
         updteButton.UseVisualStyleBackColor = False
         ' 
-        ' userComboBox
+        ' userReqComboBox
         ' 
-        userComboBox.FormattingEnabled = True
-        userComboBox.Location = New Point(132, 282)
-        userComboBox.Name = "userComboBox"
-        userComboBox.Size = New Size(261, 28)
-        userComboBox.TabIndex = 16
+        userReqComboBox.FormattingEnabled = True
+        userReqComboBox.Location = New Point(133, 283)
+        userReqComboBox.Name = "userReqComboBox"
+        userReqComboBox.Size = New Size(261, 28)
+        userReqComboBox.TabIndex = 16
         ' 
         ' userLabel
         ' 
@@ -230,13 +236,6 @@ Partial Class PlanManage
         userLabel.Size = New Size(52, 20)
         userLabel.TabIndex = 15
         userLabel.Text = "Assign"
-        ' 
-        ' finishDateTimePicker
-        ' 
-        finishDateTimePicker.Location = New Point(132, 247)
-        finishDateTimePicker.Name = "finishDateTimePicker"
-        finishDateTimePicker.Size = New Size(261, 27)
-        finishDateTimePicker.TabIndex = 14
         ' 
         ' finishDateLabel
         ' 
@@ -249,7 +248,7 @@ Partial Class PlanManage
         ' 
         ' completionTextBox
         ' 
-        completionTextBox.Location = New Point(132, 214)
+        completionTextBox.Location = New Point(133, 213)
         completionTextBox.Name = "completionTextBox"
         completionTextBox.Size = New Size(261, 27)
         completionTextBox.TabIndex = 12
@@ -263,19 +262,19 @@ Partial Class PlanManage
         completionLabel.TabIndex = 11
         completionLabel.Text = "Completion"
         ' 
-        ' endDateTimePicker
+        ' endReqDateTimePicker
         ' 
-        endDateTimePicker.Location = New Point(132, 179)
-        endDateTimePicker.Name = "endDateTimePicker"
-        endDateTimePicker.Size = New Size(261, 27)
-        endDateTimePicker.TabIndex = 8
+        endReqDateTimePicker.Location = New Point(133, 179)
+        endReqDateTimePicker.Name = "endReqDateTimePicker"
+        endReqDateTimePicker.Size = New Size(261, 27)
+        endReqDateTimePicker.TabIndex = 8
         ' 
-        ' startDateTimePicker
+        ' startReqDateTimePicker
         ' 
-        startDateTimePicker.Location = New Point(132, 146)
-        startDateTimePicker.Name = "startDateTimePicker"
-        startDateTimePicker.Size = New Size(261, 27)
-        startDateTimePicker.TabIndex = 7
+        startReqDateTimePicker.Location = New Point(133, 147)
+        startReqDateTimePicker.Name = "startReqDateTimePicker"
+        startReqDateTimePicker.Size = New Size(261, 27)
+        startReqDateTimePicker.TabIndex = 7
         ' 
         ' endDateLabel
         ' 
@@ -297,7 +296,7 @@ Partial Class PlanManage
         ' 
         ' descTextBox
         ' 
-        descTextBox.Location = New Point(132, 71)
+        descTextBox.Location = New Point(133, 71)
         descTextBox.Multiline = True
         descTextBox.Name = "descTextBox"
         descTextBox.Size = New Size(261, 69)
@@ -306,18 +305,18 @@ Partial Class PlanManage
         ' descriptionLabel
         ' 
         descriptionLabel.AutoSize = True
-        descriptionLabel.Location = New Point(13, 78)
+        descriptionLabel.Location = New Point(13, 77)
         descriptionLabel.Name = "descriptionLabel"
         descriptionLabel.Size = New Size(85, 20)
         descriptionLabel.TabIndex = 2
         descriptionLabel.Text = "Description"
         ' 
-        ' titleTextBox
+        ' titleReqTextBox
         ' 
-        titleTextBox.Location = New Point(132, 38)
-        titleTextBox.Name = "titleTextBox"
-        titleTextBox.Size = New Size(261, 27)
-        titleTextBox.TabIndex = 1
+        titleReqTextBox.Location = New Point(133, 37)
+        titleReqTextBox.Name = "titleReqTextBox"
+        titleReqTextBox.Size = New Size(261, 27)
+        titleReqTextBox.TabIndex = 1
         ' 
         ' titleLabel
         ' 
@@ -338,6 +337,7 @@ Partial Class PlanManage
         ' searchButton
         ' 
         searchButton.BackColor = Color.Bisque
+        searchButton.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold)
         searchButton.ForeColor = SystemColors.ActiveCaptionText
         searchButton.Image = My.Resources.Resources.search
         searchButton.ImageAlign = ContentAlignment.MiddleRight
@@ -351,6 +351,7 @@ Partial Class PlanManage
         ' 
         ' Panel1
         ' 
+        Panel1.Controls.Add(messagePanel)
         Panel1.Controls.Add(reloadButton)
         Panel1.Controls.Add(searchButton)
         Panel1.Controls.Add(editPanel)
@@ -362,9 +363,31 @@ Partial Class PlanManage
         Panel1.Size = New Size(1352, 805)
         Panel1.TabIndex = 21
         ' 
+        ' messagePanel
+        ' 
+        messagePanel.Controls.Add(msgLabel)
+        messagePanel.Dock = DockStyle.Bottom
+        messagePanel.Location = New Point(0, 680)
+        messagePanel.Margin = New Padding(10, 11, 10, 11)
+        messagePanel.Name = "messagePanel"
+        messagePanel.Size = New Size(1352, 125)
+        messagePanel.TabIndex = 29
+        ' 
+        ' msgLabel
+        ' 
+        msgLabel.AutoSize = True
+        msgLabel.Dock = DockStyle.Top
+        msgLabel.Font = New Font("Comic Sans MS", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        msgLabel.Location = New Point(0, 0)
+        msgLabel.Margin = New Padding(10, 11, 10, 11)
+        msgLabel.Name = "msgLabel"
+        msgLabel.Size = New Size(0, 25)
+        msgLabel.TabIndex = 0
+        ' 
         ' reloadButton
         ' 
         reloadButton.BackColor = SystemColors.GradientInactiveCaption
+        reloadButton.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold)
         reloadButton.ForeColor = SystemColors.ActiveCaptionText
         reloadButton.Image = CType(resources.GetObject("reloadButton.Image"), Image)
         reloadButton.ImageAlign = ContentAlignment.MiddleRight
@@ -377,7 +400,7 @@ Partial Class PlanManage
         ' 
         ' PlanManage
         ' 
-        AutoScaleDimensions = New SizeF(8F, 20F)
+        AutoScaleDimensions = New SizeF(8.0F, 20.0F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.FromArgb(CByte(189), CByte(195), CByte(199))
         ClientSize = New Size(1352, 805)
@@ -392,6 +415,8 @@ Partial Class PlanManage
         editPanel.PerformLayout()
         Panel1.ResumeLayout(False)
         Panel1.PerformLayout()
+        messagePanel.ResumeLayout(False)
+        messagePanel.PerformLayout()
         ResumeLayout(False)
     End Sub
 
@@ -403,26 +428,27 @@ Partial Class PlanManage
     Friend WithEvents startDateLabel As Label
     Friend WithEvents descTextBox As TextBox
     Friend WithEvents descriptionLabel As Label
-    Friend WithEvents titleTextBox As TextBox
     Friend WithEvents titleLabel As Label
     Friend WithEvents completionLabel As Label
-    Friend WithEvents endDateTimePicker As DateTimePicker
-    Friend WithEvents startDateTimePicker As DateTimePicker
-    Friend WithEvents finishDateTimePicker As DateTimePicker
     Friend WithEvents finishDateLabel As Label
     Friend WithEvents completionTextBox As TextBox
     Friend WithEvents updteButton As Button
-    Friend WithEvents userComboBox As ComboBox
     Friend WithEvents userLabel As Label
     Friend WithEvents deleteButton As Button
-    Friend WithEvents projectComboBox As ComboBox
     Friend WithEvents projectLabel As Label
     Friend WithEvents addButton As Button
-    Friend WithEvents priorityComboBox As ComboBox
     Friend WithEvents Label1 As Label
     Friend WithEvents searchTextBox As TextBox
     Friend WithEvents searchButton As Button
     Friend WithEvents Panel1 As Panel
     Friend WithEvents reloadButton As Button
     Friend WithEvents clearButton As Button
+    Friend WithEvents messagePanel As Panel
+    Friend WithEvents msgLabel As Label
+    Friend WithEvents priorityReqComboBox As ComboBox
+    Friend WithEvents projectReqComboBox As ComboBox
+    Friend WithEvents userReqComboBox As ComboBox
+    Friend WithEvents endReqDateTimePicker As DateTimePicker
+    Friend WithEvents startReqDateTimePicker As DateTimePicker
+    Friend WithEvents titleReqTextBox As TextBox
 End Class

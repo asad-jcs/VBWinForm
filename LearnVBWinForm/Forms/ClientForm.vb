@@ -8,51 +8,94 @@ Public Class ClientForm
 
         ' This call is required by the designer.
         InitializeComponent()
-        _clientService = New ClientService()
-        Util.LoadGridView(clientDataGridView, _clientService.GetAll())
+        LoadClient()
         ' Add any initialization after the InitializeComponent() call.
 
     End Sub
 
+    Private Sub LoadClient()
+        _clientService = New ClientService()
+        Dim result As Result = _clientService.GetAll()
+
+        If result.Status Then
+            Util.LoadGridView(clientDataGridView, CType(result.ResModel, List(Of Client)))
+        Else
+            Util.ShowMsg(result.ErrorMessage, msgLabel, True)
+        End If
+    End Sub
+
     Private Sub addButton_Click(sender As Object, e As EventArgs) Handles addButton.Click
-        Dim client As New Client()
-        client.Name = cliNameTextBox.Text
-        client.Phone = phoneTextBox.Text
-        client.Email = emailTextBox.Text
-        client.Address = addressTextBox.Text
+        Dim msg = UIValidation.ValidateForm(Me)
 
-        _clientService.Add(client)
+        If Not String.IsNullOrEmpty(msg) Then
+            Util.ShowMsg(msg, msgLabel, True)
+        ElseIf Not String.IsNullOrEmpty(emailTextBox.Text) AndAlso
+            Not UIValidation.IsValidEmail(emailTextBox.Text) Then
+            Util.ShowMsg(EMAIL_FORMAT, msgLabel, True)
+        ElseIf Not String.IsNullOrEmpty(phoneTextBox.Text) AndAlso
+            Not UIValidation.IsValidNumber(phoneTextBox.Text) Then
+            Util.ShowMsg(NUMBER_FORMAT, msgLabel, True)
+        Else
+            Dim client As New Client()
+            client.Name = cliNameReqTextBox.Text
+            client.Phone = phoneTextBox.Text
+            client.Email = emailTextBox.Text
+            client.Address = addressTextBox.Text
 
-        Util.ClearAllInputs(Me)
-        Util.LoadGridView(clientDataGridView, _clientService.GetAll())
+            _clientService.Add(client)
+
+            Util.ClearAllInputs(Me)
+            Util.LoadGridView(clientDataGridView, _clientService.GetAll())
+        End If
+
     End Sub
 
     Private Sub updateButton_Click(sender As Object, e As EventArgs) Handles updateButton.Click
-        Dim client As New Client()
-        client.Id = _selectedItem
-        client.Name = cliNameTextBox.Text
-        client.Phone = phoneTextBox.Text
-        client.Email = emailTextBox.Text
-        client.Address = addressTextBox.Text
+        Dim msg = UIValidation.ValidateForm(Me)
+        If Not String.IsNullOrEmpty(msg) Then
+            Util.ShowMsg(msg, msgLabel, True)
+        ElseIf Not String.IsNullOrEmpty(emailTextBox.Text) AndAlso
+            Not UIValidation.IsValidEmail(emailTextBox.Text) Then
+            Util.ShowMsg(EMAIL_FORMAT, msgLabel, True)
+        ElseIf Not String.IsNullOrEmpty(phoneTextBox.Text) AndAlso
+            Not UIValidation.IsValidNumber(phoneTextBox.Text) Then
+            Util.ShowMsg(NUMBER_FORMAT, msgLabel, True)
+        Else
+            Dim client As New Client()
+            client.Id = _selectedItem
+            client.Name = cliNameReqTextBox.Text
+            client.Phone = phoneTextBox.Text
+            client.Email = emailTextBox.Text
+            client.Address = addressTextBox.Text
 
-        _clientService.Update(client)
-
-        Util.ClearAllInputs(Me)
-        Util.LoadGridView(clientDataGridView, _clientService.GetAll())
+            Dim res As Result = _clientService.Update(client)
+            If res.Status Then
+                Util.ShowMsg(UPDATE_MSG, msgLabel)
+                Util.ClearAllInputs(Me)
+                LoadClient()
+            Else
+                Util.ShowMsg(res.ErrorMessage, msgLabel, True)
+            End If
+        End If
     End Sub
 
     Private Sub deleteButton_Click(sender As Object, e As EventArgs) Handles deleteButton.Click
+
         Dim client As New Client()
         client.Id = _selectedItem
-        client.Name = cliNameTextBox.Text
+        client.Name = cliNameReqTextBox.Text
         Dim res = Util.ShowConfirmationDialog("Are sure you want to delete this item " + client.Name)
 
         If res Then
-            _clientService.Delete(client.Id)
+            Dim result As Result = _clientService.Delete(client.Id)
+            If result.Status Then
+                Util.ShowMsg(DELETE_MSG, msgLabel)
+                Util.ClearAllInputs(Me)
+                LoadClient()
+            Else
+                Util.ShowMsg(result.ErrorMessage, msgLabel, True)
+            End If
         End If
-
-        Util.ClearAllInputs(Me)
-        Util.LoadGridView(clientDataGridView, _clientService.GetAll())
     End Sub
 
     Private Sub clientDataGridView_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles clientDataGridView.CellClick
@@ -65,7 +108,7 @@ Public Class ClientForm
                 updateButton.Enabled = True
                 deleteButton.Enabled = True
                 addButton.Enabled = False
-                cliNameTextBox.Text = selectedRow.Cells("Name").Value.ToString()
+                cliNameReqTextBox.Text = selectedRow.Cells("Name").Value.ToString()
                 emailTextBox.Text = selectedRow.Cells("Email").Value.ToString()
                 phoneTextBox.Text = selectedRow.Cells("Phone").Value
                 addressTextBox.Text = selectedRow.Cells("Address").Value.ToString()
@@ -78,6 +121,6 @@ Public Class ClientForm
         addButton.Enabled = True
         updateButton.Enabled = False
         deleteButton.Enabled = False
-        Util.LoadGridView(clientDataGridView, _clientService.GetAll())
+        Util.LoadGridView(clientDataGridView, _clientService.GetAll().ResModel)
     End Sub
 End Class

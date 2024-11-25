@@ -4,60 +4,100 @@ Imports IBM.Data.Db2
 Public Class ClientService
     Inherits RootService
 
-    Public Sub Add(client As Client)
-        Using connection As New DB2Connection(_dbContext.ConnectionString)
+    Public Function Add(client As Client)
+        Try
+            Using connection As New DB2Connection(_dbContext.ConnectionString)
 
-            connection.Open()
+                connection.Open()
 
-            Dim query As String = "INSERT INTO TASK.Client (Name, Phone, Email, Address) VALUES (@Name, @Phone, @Email, @Address)"
+                Dim query As String = "INSERT INTO TASK.Client (Name, Phone, Email, Address) VALUES (@Name, @Phone, @Email, @Address)"
 
-            connection.Execute(query, New With {
-                .Name = client.Name,
-                .Phone = client.Phone,
-                .Email = client.Email,
-                .Address = client.Address
-            })
-        End Using
-    End Sub
+                connection.Execute(query, New With {
+                    .Name = client.Name,
+                    .Phone = client.Phone,
+                    .Email = client.Email,
+                    .Address = client.Address
+                })
+            End Using
 
-    Public Function GetAll()
-        Using connection As New DB2Connection(_dbContext.ConnectionString)
-            connection.Open()
+            _result.Status = True
 
-            Dim query As String = "Select * from TASK.Client"
+            Return _result
+        Catch ex As Exception
+            _result.Status = False
+            _result.ErrorMessage = ex.Message
+        End Try
 
-            Dim result As List(Of Client) = connection.Query(Of Client)(query).ToList()
-
-            Return result
-        End Using
+        Return _result
     End Function
 
-    Public Sub Delete(clientId As Integer)
-        Using connection As New DB2Connection(_dbContext.ConnectionString)
-            connection.Open()
+    Public Function GetAll()
+        Try
+            Using connection As New DB2Connection(_dbContext.ConnectionString)
+                connection.Open()
 
-            Dim query As String = "Delete from TASK.Client Where Id = @Id"
+                Dim query As String = "Select * from TASK.Client"
 
-            connection.Execute(query, New With {
-                .Id = clientId
-            })
-        End Using
-    End Sub
+                Dim listOfClient As List(Of Client) = connection.Query(Of Client)(query).ToList()
 
-    Public Sub Update(client As Client)
-        Using connection As New DB2Connection(_dbContext.ConnectionString)
-            connection.Open()
+                _result.Status = True
+                _result.ResModel = listOfClient
 
-            Dim query As String = "Update TASK.Client set Name = @Name, Phone = @Phone, Email= @Email, Address= @Address Where Id = @Id"
+            End Using
+        Catch ex As Exception
+            _result.ErrorMessage = ex.Message
+            _result.Status = True
+        End Try
 
-            connection.Execute(query, New With {
-                .Id = client.Id,
-                .Name = client.Name,
-                .Phone = client.Phone,
-                .Email = client.Email,
-                .Address = client.Address
-            })
-        End Using
-    End Sub
+        Return _result
+    End Function
+
+    Public Function Delete(clientId As Integer)
+        Try
+            Using connection As New DB2Connection(_dbContext.ConnectionString)
+                connection.Open()
+
+                Dim query As String = "Delete from TASK.Client Where Id = @Id"
+
+                connection.Execute(query, New With {
+                    .Id = clientId
+                })
+            End Using
+            _result.Status = True
+
+            Return _result
+        Catch ex As Exception
+            _result.ErrorMessage = ex.Message
+            _result.Status = True
+        End Try
+
+        Return _result
+    End Function
+
+    Public Function Update(client As Client)
+        Try
+            Using connection As New DB2Connection(_dbContext.ConnectionString)
+                connection.Open()
+
+                Dim query As String = "Update TASK.Client set Name = @Name, Phone = @Phone, Email= @Email, Address= @Address Where Id = @Id"
+
+                connection.Execute(query, New With {
+                    .Id = client.Id,
+                    .Name = client.Name,
+                    .Phone = client.Phone,
+                    .Email = client.Email,
+                    .Address = client.Address
+                })
+            End Using
+
+            _result.Status = True
+            Return _result
+        Catch ex As Exception
+            _result.Status = False
+            _result.ErrorMessage = ex.Message
+        End Try
+
+        Return _result
+    End Function
 
 End Class

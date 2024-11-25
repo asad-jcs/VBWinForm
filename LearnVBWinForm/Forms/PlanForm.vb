@@ -27,15 +27,15 @@ Public Class PlanForm
         taskInfo.Start_Date = startDateTimePicker.Value
         taskInfo.End_Date = endDateTimePicker.Value
 
-        Dim selectedValue As String = priorityComboBox.SelectedItem.ToString()
+        Dim selectedValue As String = priorityReqComboBox.SelectedItem.ToString()
 
         ' Find the corresponding key in the dictionary based on the selected value
         Dim selectedKey As String = _priorityDictionary.FirstOrDefault(Function(kvp) kvp.Value = selectedValue).Key
         taskInfo.Priority = selectedKey
-        If userComboBox.SelectedValue Is Nothing Then
+        If userReqComboBox.SelectedValue Is Nothing Then
             taskInfo.UserID = _userID
         Else
-            taskInfo.UserID = userComboBox.SelectedValue
+            taskInfo.UserID = userReqComboBox.SelectedValue
         End If
 
         _taskInfoService.Add(taskInfo)
@@ -46,10 +46,10 @@ Public Class PlanForm
 
     Private Sub LoadDropdown()
         For Each kvp As KeyValuePair(Of String, String) In _priorityDictionary
-            priorityComboBox.Items.Add(kvp.Value)
+            priorityReqComboBox.Items.Add(kvp.Value)
         Next
 
-        Util.LoadDropBox(userComboBox, _userService.GetAll(), "Username", "Id")
+        Util.LoadDropBox(userReqComboBox, _userService.GetAll(), "Username", "Id")
 
     End Sub
 

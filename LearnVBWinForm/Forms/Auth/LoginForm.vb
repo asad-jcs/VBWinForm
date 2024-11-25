@@ -17,28 +17,36 @@ Public Class LoginForm
 
     Private Sub loginButton_Click(sender As Object, e As EventArgs) Handles loginButton.Click
 
+        Dim msg = UIValidation.ValidateForm(Me)
+        UIValidation.IsValidEmail(emailReqTextBox.Text)
+        If Not String.IsNullOrEmpty(msg) Then
+            Util.ShowMsg(msg, msgLabel, True)
 
-        Dim user = New User()
-
-        user.Email = emailTextBox.Text
-        user.Password = passwordTextBox.Text
-
-
-        Dim res = _userService.Login(user)
-
-        If (res IsNot Nothing) Then
-
-
-            Dim plan As New PlanListForm()
-
-            mainForm.ShowNavAfterLogin()
-
-            ServiceProvider.SetSessionValue("User", res)
-
-            mainForm.LoadForm(plan)
+        ElseIf Not UIValidation.IsValidEmail(emailReqTextBox.Text) Then
+            Util.ShowMsg(EMAIL_FORMAT, msgLabel, True)
         Else
-            MessageBox.Show("Login Failed!")
+            Dim user = New User()
+
+            user.Email = emailReqTextBox.Text
+            user.Password = passwordReqTextBox.Text
+
+
+            Dim res As Result = _userService.Login(user)
+
+            If res.Status Then
+                Dim plan As New PlanListForm()
+
+                mainForm.ShowNavAfterLogin()
+
+                ServiceProvider.SetSessionValue("User", CType(res.ResModel, User))
+
+                mainForm.LoadForm(plan)
+            Else
+                Util.ShowMsg(res.ErrorMessage, msgLabel, True)
+            End If
+
         End If
+
     End Sub
 
     Private Sub regButton_Click(sender As Object, e As EventArgs) Handles regButton.Click

@@ -43,9 +43,9 @@ Partial Class PlanListForm
         planTableLayoutPanel.BackgroundImageLayout = ImageLayout.Center
         planTableLayoutPanel.ColumnCount = 5
         planTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 20F))
-        planTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 17.5F))
         planTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 25F))
-        planTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 17.5F))
+        planTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 30F))
+        planTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 5F))
         planTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 20F))
         planTableLayoutPanel.Controls.Add(listPlanLabel, 2, 0)
         planTableLayoutPanel.Dock = DockStyle.Top
@@ -61,7 +61,7 @@ Partial Class PlanListForm
         listPlanLabel.AutoSize = True
         listPlanLabel.Font = New Font("Comic Sans MS", 20F)
         listPlanLabel.ForeColor = SystemColors.ControlLightLight
-        listPlanLabel.Location = New Point(303, 0)
+        listPlanLabel.Location = New Point(363, 0)
         listPlanLabel.Name = "listPlanLabel"
         listPlanLabel.Size = New Size(154, 47)
         listPlanLabel.TabIndex = 0
@@ -80,6 +80,7 @@ Partial Class PlanListForm
         ' searchButton
         ' 
         searchButton.BackColor = Color.Bisque
+        searchButton.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
         searchButton.ForeColor = SystemColors.ActiveCaptionText
         searchButton.Image = My.Resources.Resources.search
         searchButton.ImageAlign = ContentAlignment.MiddleRight
@@ -93,6 +94,7 @@ Partial Class PlanListForm
         ' reloadButton
         ' 
         reloadButton.BackColor = SystemColors.GradientInactiveCaption
+        reloadButton.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
         reloadButton.ForeColor = SystemColors.ActiveCaptionText
         reloadButton.Image = CType(resources.GetObject("reloadButton.Image"), Image)
         reloadButton.ImageAlign = ContentAlignment.MiddleRight

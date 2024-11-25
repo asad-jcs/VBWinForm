@@ -39,12 +39,12 @@ Partial Class Dashboard
         timeLabel = New Label()
         mainPanel = New Panel()
         timePanel = New Panel()
+        clockPictureBox = New PictureBox()
         timePrintLabel = New Label()
         datePrintLabel = New Label()
         dateLabel = New Label()
         welcomeLabel = New Label()
         trackTimer = New Timer(components)
-        clockPictureBox = New PictureBox()
         navPanel.SuspendLayout()
         profileInfoPanel.SuspendLayout()
         CType(profilePictureBox, ComponentModel.ISupportInitialize).BeginInit()
@@ -116,6 +116,7 @@ Partial Class Dashboard
         ' MenuStrip
         ' 
         MenuStrip.BackColor = SystemColors.ActiveCaption
+        MenuStrip.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         MenuStrip.ImageScalingSize = New Size(20, 20)
         MenuStrip.Items.AddRange(New ToolStripItem() {ManagementToolStripMenuItem})
         MenuStrip.Location = New Point(0, 0)
@@ -132,42 +133,42 @@ Partial Class Dashboard
         ManagementToolStripMenuItem.Image = My.Resources.Resources.menu_button1
         ManagementToolStripMenuItem.ImageAlign = ContentAlignment.MiddleLeft
         ManagementToolStripMenuItem.Name = "ManagementToolStripMenuItem"
-        ManagementToolStripMenuItem.Size = New Size(80, 24)
+        ManagementToolStripMenuItem.Size = New Size(83, 24)
         ManagementToolStripMenuItem.Text = "Menu"
         ' 
         ' Home
         ' 
         Home.BackColor = SystemColors.ActiveCaption
         Home.Name = "Home"
-        Home.Size = New Size(139, 26)
+        Home.Size = New Size(142, 26)
         Home.Text = "Home"
         ' 
         ' Plan
         ' 
         Plan.BackColor = SystemColors.ActiveCaption
         Plan.Name = "Plan"
-        Plan.Size = New Size(139, 26)
+        Plan.Size = New Size(142, 26)
         Plan.Text = "Plan"
         ' 
         ' Project
         ' 
         Project.BackColor = SystemColors.ActiveCaption
         Project.Name = "Project"
-        Project.Size = New Size(139, 26)
+        Project.Size = New Size(142, 26)
         Project.Text = "Project"
         ' 
         ' Client
         ' 
         Client.BackColor = SystemColors.ActiveCaption
         Client.Name = "Client"
-        Client.Size = New Size(139, 26)
+        Client.Size = New Size(142, 26)
         Client.Text = "Client"
         ' 
         ' Logout
         ' 
         Logout.BackColor = SystemColors.ActiveCaption
         Logout.Name = "Logout"
-        Logout.Size = New Size(139, 26)
+        Logout.Size = New Size(142, 26)
         Logout.Text = "Logout"
         ' 
         ' timeLabel
@@ -205,6 +206,17 @@ Partial Class Dashboard
         timePanel.Name = "timePanel"
         timePanel.Size = New Size(635, 125)
         timePanel.TabIndex = 2
+        ' 
+        ' clockPictureBox
+        ' 
+        clockPictureBox.Dock = DockStyle.Right
+        clockPictureBox.Image = My.Resources.Resources.icons8_clock
+        clockPictureBox.Location = New Point(510, 0)
+        clockPictureBox.Name = "clockPictureBox"
+        clockPictureBox.Size = New Size(125, 125)
+        clockPictureBox.SizeMode = PictureBoxSizeMode.CenterImage
+        clockPictureBox.TabIndex = 5
+        clockPictureBox.TabStop = False
         ' 
         ' timePrintLabel
         ' 
@@ -252,17 +264,6 @@ Partial Class Dashboard
         ' 
         ' trackTimer
         ' 
-        ' 
-        ' clockPictureBox
-        ' 
-        clockPictureBox.Dock = DockStyle.Right
-        clockPictureBox.Image = My.Resources.Resources.icons8_clock
-        clockPictureBox.Location = New Point(510, 0)
-        clockPictureBox.Name = "clockPictureBox"
-        clockPictureBox.Size = New Size(125, 125)
-        clockPictureBox.SizeMode = PictureBoxSizeMode.CenterImage
-        clockPictureBox.TabIndex = 5
-        clockPictureBox.TabStop = False
         ' 
         ' Dashboard
         ' 

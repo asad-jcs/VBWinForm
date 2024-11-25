@@ -13,12 +13,18 @@ Public Class ProjectForm
         _projectService = New ProjectService()
         _clientService = New ClientService()
         LoadDataGridView()
-        Util.LoadDropBox(clientComboBox, _clientService.GetAll(), "Name", "Id")
+        LoadComboBox()
         ' Add any initialization after the InitializeComponent() call.
     End Sub
 
+    Private Sub LoadComboBox()
+        Dim _result As Result = _clientService.GetAll()
+        Util.LoadDropBox(clientReqComboBox, CType(_result.ResModel, List(Of Client)), "Name", "Id")
+    End Sub
+
     Private Sub LoadDataGridView()
-        Util.LoadGridView(projectDataGridView, _projectService.GetAllProjectInfoWithClient())
+        Dim _result As Result = _projectService.GetAllProjectInfoWithClient()
+        Util.LoadGridView(projectDataGridView, CType(_result.ResModel, List(Of ProjectClientViewModel)))
         projectDataGridView.Columns("ClientId").Visible = False
     End Sub
 
@@ -30,23 +36,35 @@ Public Class ProjectForm
     End Sub
 
     Private Sub addButton_Click(sender As Object, e As EventArgs) Handles addButton.Click
-        Dim project As New Project()
-        project.Name = projNameTextBox.Text
-        project.Description = projDesTextBox.Text
-        project.ClientId = clientComboBox.SelectedValue
 
-        _projectService.Add(project)
+        Dim msg = UIValidation.ValidateForm(Me)
+        If Not String.IsNullOrEmpty(msg) Then
+            Util.ShowMsg(msg, msgLabel, True)
+        Else
+            Dim project As New Project()
+            project.Name = projNameReqTextBox.Text
+            project.Description = projDesTextBox.Text
+            project.ClientId = clientReqComboBox.SelectedValue
 
-        Util.ClearAllInputs(Me)
-        LoadDataGridView()
+            Dim res As Result = _projectService.Add(project)
+
+            If res.Status Then
+                Util.ShowMsg(SUCCESS_MSG, msgLabel)
+                Util.ClearAllInputs(Me)
+                LoadDataGridView()
+            Else
+                Util.ShowMsg(res.ErrorMessage, msgLabel, True)
+            End If
+        End If
     End Sub
 
     Private Sub updateButton_Click(sender As Object, e As EventArgs) Handles updateButton.Click
+
         Dim project As New Project()
         project.Id = _selectedItem
-        project.Name = projNameTextBox.Text
+        project.Name = projNameReqTextBox.Text
         project.Description = projDesTextBox.Text
-        project.ClientId = clientComboBox.SelectedValue
+        project.ClientId = clientReqComboBox.SelectedValue
 
         _projectService.Update(project)
 
@@ -57,7 +75,7 @@ Public Class ProjectForm
     Private Sub deleteButton_Click(sender As Object, e As EventArgs) Handles deleteButton.Click
         Dim project As New Project()
         project.Id = _selectedItem
-        project.Name = projNameTextBox.Text
+        project.Name = projNameReqTextBox.Text
 
         Dim res = Util.ShowConfirmationDialog("Are you sure you want to delete this item " + project.Name)
 
@@ -79,9 +97,9 @@ Public Class ProjectForm
                 updateButton.Enabled = True
                 deleteButton.Enabled = True
                 addButton.Enabled = False
-                projNameTextBox.Text = selectedRow.Cells("Name").Value.ToString()
+                projNameReqTextBox.Text = selectedRow.Cells("Name").Value.ToString()
                 projDesTextBox.Text = selectedRow.Cells("Description").Value.ToString()
-                clientComboBox.SelectedValue = selectedRow.Cells("ClientId").Value
+                clientReqComboBox.SelectedValue = selectedRow.Cells("ClientId").Value.ToString()
             End If
         End If
     End Sub

@@ -26,6 +26,8 @@ Partial Class ClientForm
         clientTableLayoutPanel = New TableLayoutPanel()
         clientLabel = New Label()
         clientPanel = New Panel()
+        messagePanel = New Panel()
+        msgLabel = New Label()
         clearButton = New Button()
         emailTextBox = New TextBox()
         emailLabel = New Label()
@@ -36,11 +38,12 @@ Partial Class ClientForm
         deleteButton = New Button()
         addressTextBox = New TextBox()
         addressLabel = New Label()
-        cliNameTextBox = New TextBox()
+        cliNameReqTextBox = New TextBox()
         cTitleLabel = New Label()
         clientDataGridView = New DataGridView()
         clientTableLayoutPanel.SuspendLayout()
         clientPanel.SuspendLayout()
+        messagePanel.SuspendLayout()
         CType(clientDataGridView, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -50,9 +53,9 @@ Partial Class ClientForm
         clientTableLayoutPanel.BackgroundImageLayout = ImageLayout.Center
         clientTableLayoutPanel.ColumnCount = 5
         clientTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 20F))
-        clientTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 17.5F))
         clientTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 25F))
-        clientTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 17.5F))
+        clientTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 30F))
+        clientTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 5F))
         clientTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 20F))
         clientTableLayoutPanel.Controls.Add(clientLabel, 2, 0)
         clientTableLayoutPanel.Dock = DockStyle.Top
@@ -68,7 +71,7 @@ Partial Class ClientForm
         clientLabel.AutoSize = True
         clientLabel.Font = New Font("Comic Sans MS", 20F)
         clientLabel.ForeColor = SystemColors.ControlLightLight
-        clientLabel.Location = New Point(303, 0)
+        clientLabel.Location = New Point(363, 0)
         clientLabel.Name = "clientLabel"
         clientLabel.Size = New Size(112, 47)
         clientLabel.TabIndex = 0
@@ -77,6 +80,7 @@ Partial Class ClientForm
         ' clientPanel
         ' 
         clientPanel.BackColor = SystemColors.ActiveCaption
+        clientPanel.Controls.Add(messagePanel)
         clientPanel.Controls.Add(clearButton)
         clientPanel.Controls.Add(emailTextBox)
         clientPanel.Controls.Add(emailLabel)
@@ -87,17 +91,39 @@ Partial Class ClientForm
         clientPanel.Controls.Add(deleteButton)
         clientPanel.Controls.Add(addressTextBox)
         clientPanel.Controls.Add(addressLabel)
-        clientPanel.Controls.Add(cliNameTextBox)
+        clientPanel.Controls.Add(cliNameReqTextBox)
         clientPanel.Controls.Add(cTitleLabel)
         clientPanel.Dock = DockStyle.Right
         clientPanel.Location = New Point(418, 57)
         clientPanel.Name = "clientPanel"
-        clientPanel.Size = New Size(382, 393)
+        clientPanel.Size = New Size(382, 498)
         clientPanel.TabIndex = 22
+        ' 
+        ' messagePanel
+        ' 
+        messagePanel.Controls.Add(msgLabel)
+        messagePanel.Dock = DockStyle.Bottom
+        messagePanel.Location = New Point(0, 373)
+        messagePanel.Margin = New Padding(10, 11, 10, 11)
+        messagePanel.Name = "messagePanel"
+        messagePanel.Size = New Size(382, 125)
+        messagePanel.TabIndex = 19
+        ' 
+        ' msgLabel
+        ' 
+        msgLabel.AutoSize = True
+        msgLabel.Dock = DockStyle.Top
+        msgLabel.Font = New Font("Comic Sans MS", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        msgLabel.Location = New Point(0, 0)
+        msgLabel.Margin = New Padding(10, 11, 10, 11)
+        msgLabel.Name = "msgLabel"
+        msgLabel.Size = New Size(0, 29)
+        msgLabel.TabIndex = 0
         ' 
         ' clearButton
         ' 
         clearButton.BackColor = Color.Silver
+        clearButton.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
         clearButton.Image = My.Resources.Resources.icons8_clear_16
         clearButton.ImageAlign = ContentAlignment.MiddleRight
         clearButton.Location = New Point(282, 13)
@@ -133,7 +159,7 @@ Partial Class ClientForm
         ' phoneLabel
         ' 
         phoneLabel.AutoSize = True
-        phoneLabel.Location = New Point(27, 206)
+        phoneLabel.Location = New Point(27, 205)
         phoneLabel.Name = "phoneLabel"
         phoneLabel.Size = New Size(50, 20)
         phoneLabel.TabIndex = 9
@@ -142,6 +168,7 @@ Partial Class ClientForm
         ' addButton
         ' 
         addButton.BackColor = Color.FromArgb(CByte(128), CByte(255), CByte(128))
+        addButton.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
         addButton.Image = My.Resources.Resources.icons8_add_16
         addButton.ImageAlign = ContentAlignment.MiddleRight
         addButton.Location = New Point(82, 272)
@@ -154,6 +181,7 @@ Partial Class ClientForm
         ' updateButton
         ' 
         updateButton.BackColor = Color.FromArgb(CByte(128), CByte(128), CByte(255))
+        updateButton.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
         updateButton.Image = My.Resources.Resources.icons8_update_16
         updateButton.ImageAlign = ContentAlignment.MiddleRight
         updateButton.Location = New Point(182, 272)
@@ -166,6 +194,7 @@ Partial Class ClientForm
         ' deleteButton
         ' 
         deleteButton.BackColor = Color.FromArgb(CByte(255), CByte(128), CByte(128))
+        deleteButton.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
         deleteButton.Image = CType(resources.GetObject("deleteButton.Image"), Image)
         deleteButton.ImageAlign = ContentAlignment.MiddleRight
         deleteButton.Location = New Point(282, 272)
@@ -192,12 +221,12 @@ Partial Class ClientForm
         addressLabel.TabIndex = 2
         addressLabel.Text = "Address"
         ' 
-        ' cliNameTextBox
+        ' cliNameReqTextBox
         ' 
-        cliNameTextBox.Location = New Point(133, 48)
-        cliNameTextBox.Name = "cliNameTextBox"
-        cliNameTextBox.Size = New Size(243, 27)
-        cliNameTextBox.TabIndex = 1
+        cliNameReqTextBox.Location = New Point(133, 48)
+        cliNameReqTextBox.Name = "cliNameReqTextBox"
+        cliNameReqTextBox.Size = New Size(243, 27)
+        cliNameReqTextBox.TabIndex = 1
         ' 
         ' cTitleLabel
         ' 
@@ -216,14 +245,14 @@ Partial Class ClientForm
         clientDataGridView.Location = New Point(0, 57)
         clientDataGridView.Name = "clientDataGridView"
         clientDataGridView.RowHeadersWidth = 51
-        clientDataGridView.Size = New Size(418, 393)
+        clientDataGridView.Size = New Size(418, 498)
         clientDataGridView.TabIndex = 21
         ' 
         ' ClientForm
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(800, 450)
+        ClientSize = New Size(800, 555)
         Controls.Add(clientDataGridView)
         Controls.Add(clientPanel)
         Controls.Add(clientTableLayoutPanel)
@@ -233,6 +262,8 @@ Partial Class ClientForm
         clientTableLayoutPanel.PerformLayout()
         clientPanel.ResumeLayout(False)
         clientPanel.PerformLayout()
+        messagePanel.ResumeLayout(False)
+        messagePanel.PerformLayout()
         CType(clientDataGridView, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
     End Sub
@@ -245,7 +276,7 @@ Partial Class ClientForm
     Friend WithEvents clientLabel As Label
     Friend WithEvents addressTextBox As TextBox
     Friend WithEvents addressLabel As Label
-    Friend WithEvents cliNameTextBox As TextBox
+    Friend WithEvents cliNameReqTextBox As TextBox
     Friend WithEvents cTitleLabel As Label
     Friend WithEvents clientDataGridView As DataGridView
     Friend WithEvents phoneTextBox As TextBox
@@ -253,4 +284,6 @@ Partial Class ClientForm
     Friend WithEvents emailTextBox As TextBox
     Friend WithEvents emailLabel As Label
     Friend WithEvents clearButton As Button
+    Friend WithEvents messagePanel As Panel
+    Friend WithEvents msgLabel As Label
 End Class

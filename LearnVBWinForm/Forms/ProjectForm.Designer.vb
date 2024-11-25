@@ -27,19 +27,22 @@ Partial Class ProjectForm
         projectLabel = New Label()
         projectDataGridView = New DataGridView()
         Panel1 = New Panel()
+        messagePanel = New Panel()
+        msgLabel = New Label()
         clearButton = New Button()
         addButton = New Button()
         updateButton = New Button()
         deleteButton = New Button()
-        clientComboBox = New ComboBox()
+        clientReqComboBox = New ComboBox()
         clientLabel = New Label()
         projDesTextBox = New TextBox()
         pDesLabel = New Label()
-        projNameTextBox = New TextBox()
+        projNameReqTextBox = New TextBox()
         pTitleLabel = New Label()
         projectTableLayoutPanel.SuspendLayout()
         CType(projectDataGridView, ComponentModel.ISupportInitialize).BeginInit()
         Panel1.SuspendLayout()
+        messagePanel.SuspendLayout()
         SuspendLayout()
         ' 
         ' projectTableLayoutPanel
@@ -48,9 +51,9 @@ Partial Class ProjectForm
         projectTableLayoutPanel.BackgroundImageLayout = ImageLayout.Center
         projectTableLayoutPanel.ColumnCount = 5
         projectTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 20F))
-        projectTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 17.5F))
         projectTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 25F))
-        projectTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 17.5F))
+        projectTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 30F))
+        projectTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 5F))
         projectTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 20F))
         projectTableLayoutPanel.Controls.Add(projectLabel, 2, 0)
         projectTableLayoutPanel.Dock = DockStyle.Top
@@ -66,7 +69,7 @@ Partial Class ProjectForm
         projectLabel.AutoSize = True
         projectLabel.Font = New Font("Comic Sans MS", 20F)
         projectLabel.ForeColor = SystemColors.ControlLightLight
-        projectLabel.Location = New Point(303, 0)
+        projectLabel.Location = New Point(363, 0)
         projectLabel.Name = "projectLabel"
         projectLabel.Size = New Size(138, 47)
         projectLabel.TabIndex = 0
@@ -80,31 +83,54 @@ Partial Class ProjectForm
         projectDataGridView.Location = New Point(0, 57)
         projectDataGridView.Name = "projectDataGridView"
         projectDataGridView.RowHeadersWidth = 51
-        projectDataGridView.Size = New Size(800, 393)
+        projectDataGridView.Size = New Size(800, 394)
         projectDataGridView.TabIndex = 18
         ' 
         ' Panel1
         ' 
         Panel1.BackColor = SystemColors.ActiveCaption
+        Panel1.Controls.Add(messagePanel)
         Panel1.Controls.Add(clearButton)
         Panel1.Controls.Add(addButton)
         Panel1.Controls.Add(updateButton)
         Panel1.Controls.Add(deleteButton)
-        Panel1.Controls.Add(clientComboBox)
+        Panel1.Controls.Add(clientReqComboBox)
         Panel1.Controls.Add(clientLabel)
         Panel1.Controls.Add(projDesTextBox)
         Panel1.Controls.Add(pDesLabel)
-        Panel1.Controls.Add(projNameTextBox)
+        Panel1.Controls.Add(projNameReqTextBox)
         Panel1.Controls.Add(pTitleLabel)
         Panel1.Dock = DockStyle.Right
-        Panel1.Location = New Point(412, 57)
+        Panel1.Location = New Point(411, 57)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(388, 393)
+        Panel1.Size = New Size(389, 394)
         Panel1.TabIndex = 19
+        ' 
+        ' messagePanel
+        ' 
+        messagePanel.Controls.Add(msgLabel)
+        messagePanel.Dock = DockStyle.Bottom
+        messagePanel.Location = New Point(0, 269)
+        messagePanel.Margin = New Padding(10, 11, 10, 11)
+        messagePanel.Name = "messagePanel"
+        messagePanel.Size = New Size(389, 125)
+        messagePanel.TabIndex = 19
+        ' 
+        ' msgLabel
+        ' 
+        msgLabel.AutoSize = True
+        msgLabel.Dock = DockStyle.Top
+        msgLabel.Font = New Font("Comic Sans MS", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        msgLabel.Location = New Point(0, 0)
+        msgLabel.Margin = New Padding(10, 11, 10, 11)
+        msgLabel.Name = "msgLabel"
+        msgLabel.Size = New Size(0, 25)
+        msgLabel.TabIndex = 0
         ' 
         ' clearButton
         ' 
         clearButton.BackColor = SystemColors.ActiveBorder
+        clearButton.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
         clearButton.Image = CType(resources.GetObject("clearButton.Image"), Image)
         clearButton.ImageAlign = ContentAlignment.MiddleRight
         clearButton.Location = New Point(282, 13)
@@ -117,6 +143,7 @@ Partial Class ProjectForm
         ' addButton
         ' 
         addButton.BackColor = Color.FromArgb(CByte(128), CByte(255), CByte(128))
+        addButton.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
         addButton.Image = My.Resources.Resources.icons8_add_16
         addButton.ImageAlign = ContentAlignment.MiddleRight
         addButton.Location = New Point(82, 245)
@@ -129,6 +156,7 @@ Partial Class ProjectForm
         ' updateButton
         ' 
         updateButton.BackColor = Color.FromArgb(CByte(128), CByte(128), CByte(255))
+        updateButton.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
         updateButton.Image = My.Resources.Resources.icons8_update_16
         updateButton.ImageAlign = ContentAlignment.MiddleRight
         updateButton.Location = New Point(182, 245)
@@ -141,6 +169,7 @@ Partial Class ProjectForm
         ' deleteButton
         ' 
         deleteButton.BackColor = Color.FromArgb(CByte(255), CByte(128), CByte(128))
+        deleteButton.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
         deleteButton.Image = CType(resources.GetObject("deleteButton.Image"), Image)
         deleteButton.ImageAlign = ContentAlignment.MiddleRight
         deleteButton.Location = New Point(282, 245)
@@ -150,13 +179,13 @@ Partial Class ProjectForm
         deleteButton.Text = "Delete"
         deleteButton.UseVisualStyleBackColor = False
         ' 
-        ' clientComboBox
+        ' clientReqComboBox
         ' 
-        clientComboBox.FormattingEnabled = True
-        clientComboBox.Location = New Point(133, 204)
-        clientComboBox.Name = "clientComboBox"
-        clientComboBox.Size = New Size(243, 28)
-        clientComboBox.TabIndex = 5
+        clientReqComboBox.FormattingEnabled = True
+        clientReqComboBox.Location = New Point(133, 204)
+        clientReqComboBox.Name = "clientReqComboBox"
+        clientReqComboBox.Size = New Size(243, 28)
+        clientReqComboBox.TabIndex = 5
         ' 
         ' clientLabel
         ' 
@@ -184,12 +213,12 @@ Partial Class ProjectForm
         pDesLabel.TabIndex = 2
         pDesLabel.Text = "Description"
         ' 
-        ' projNameTextBox
+        ' projNameReqTextBox
         ' 
-        projNameTextBox.Location = New Point(133, 48)
-        projNameTextBox.Name = "projNameTextBox"
-        projNameTextBox.Size = New Size(243, 27)
-        projNameTextBox.TabIndex = 1
+        projNameReqTextBox.Location = New Point(133, 48)
+        projNameReqTextBox.Name = "projNameReqTextBox"
+        projNameReqTextBox.Size = New Size(243, 27)
+        projNameReqTextBox.TabIndex = 1
         ' 
         ' pTitleLabel
         ' 
@@ -204,7 +233,7 @@ Partial Class ProjectForm
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(800, 450)
+        ClientSize = New Size(800, 451)
         Controls.Add(Panel1)
         Controls.Add(projectDataGridView)
         Controls.Add(projectTableLayoutPanel)
@@ -215,6 +244,8 @@ Partial Class ProjectForm
         CType(projectDataGridView, ComponentModel.ISupportInitialize).EndInit()
         Panel1.ResumeLayout(False)
         Panel1.PerformLayout()
+        messagePanel.ResumeLayout(False)
+        messagePanel.PerformLayout()
         ResumeLayout(False)
     End Sub
 
@@ -222,14 +253,16 @@ Partial Class ProjectForm
     Friend WithEvents projectLabel As Label
     Friend WithEvents projectDataGridView As DataGridView
     Friend WithEvents Panel1 As Panel
-    Friend WithEvents projNameTextBox As TextBox
+    Friend WithEvents projNameReqTextBox As TextBox
     Friend WithEvents pTitleLabel As Label
     Friend WithEvents addButton As Button
     Friend WithEvents updateButton As Button
     Friend WithEvents deleteButton As Button
-    Friend WithEvents clientComboBox As ComboBox
+    Friend WithEvents clientReqComboBox As ComboBox
     Friend WithEvents clientLabel As Label
     Friend WithEvents projDesTextBox As TextBox
     Friend WithEvents pDesLabel As Label
     Friend WithEvents clearButton As Button
+    Friend WithEvents messagePanel As Panel
+    Friend WithEvents msgLabel As Label
 End Class

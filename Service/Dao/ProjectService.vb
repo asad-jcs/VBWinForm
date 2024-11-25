@@ -3,69 +3,119 @@ Imports IBM.Data.Db2
 
 Public Class ProjectService
     Inherits RootService
-    Public Sub Add(project As Project)
-        Using connection As New DB2Connection(_dbContext.ConnectionString)
+    Public Function Add(project As Project)
+        Try
+            Using connection As New DB2Connection(_dbContext.ConnectionString)
 
-            connection.Open()
+                connection.Open()
 
-            Dim query As String = "INSERT INTO TASK.Project (Name, Description, ClientId) VALUES (@Name, @Description, @ClientId)"
+                Dim query As String = "INSERT INTO TASK.Project (Name, Description, ClientId) VALUES (@Name, @Description, @ClientId)"
 
-            connection.Execute(query, New With {
-                .Name = project.Name,
-                .Description = project.Description,
-                .ClientId = project.ClientId
-            })
-        End Using
-    End Sub
+                connection.Execute(query, New With {
+                    .Name = project.Name,
+                    .Description = project.Description,
+                    .ClientId = project.ClientId
+                })
+
+                _result.Status = True
+                Return _result
+            End Using
+        Catch ex As Exception
+            _result.Status = False
+            _result.ErrorMessage = ex.Message
+        End Try
+
+        Return _result
+    End Function
 
     Public Function GetAll()
-        Using connection As New DB2Connection(_dbContext.ConnectionString)
-            connection.Open()
+        Try
+            Using connection As New DB2Connection(_dbContext.ConnectionString)
+                connection.Open()
 
-            Dim query As String = "Select * from TASK.Project"
+                Dim query As String = "Select * from TASK.Project"
 
-            Dim result As List(Of Project) = connection.Query(Of Project)(query).ToList()
+                Dim result As List(Of Project) = connection.Query(Of Project)(query).ToList()
 
-            Return result
-        End Using
+                _result.Status = True
+                _result.ResModel = result
+
+                Return _result
+            End Using
+        Catch ex As Exception
+            _result.Status = False
+            _result.ErrorMessage = ex.Message
+        End Try
+
+        Return _result
     End Function
 
     Public Function GetAllProjectInfoWithClient()
-        Using connection As New DB2Connection(_dbContext.ConnectionString)
-            connection.Open()
+        Try
+            Using connection As New DB2Connection(_dbContext.ConnectionString)
+                connection.Open()
 
-            Dim query As String = "Select proj.Id, proj.Name, proj.Description, proj.ClientId, cli.Name as ClientName from TASK.Project proj inner join TASK.Client cli on proj.ClientId = cli.Id"
+                Dim query As String = "Select proj.Id, proj.Name, proj.Description, proj.ClientId, cli.Name as ClientName from TASK.Project proj inner join TASK.Client cli on proj.ClientId = cli.Id"
 
-            Dim result As List(Of ProjectClientViewModel) = connection.Query(Of ProjectClientViewModel)(query).ToList()
+                Dim result As List(Of ProjectClientViewModel) = connection.Query(Of ProjectClientViewModel)(query).ToList()
 
-            Return result
-        End Using
+                _result.Status = True
+                _result.ResModel = result
+            End Using
+
+            Return _result
+        Catch ex As Exception
+            _result.Status = False
+            _result.ErrorMessage = ex.Message
+        End Try
+
+        Return _result
     End Function
 
-    Public Sub Delete(projectId As Integer)
-        Using connection As New DB2Connection(_dbContext.ConnectionString)
-            connection.Open()
+    Public Function Delete(projectId As Integer)
+        Try
+            Using connection As New DB2Connection(_dbContext.ConnectionString)
+                connection.Open()
 
-            Dim query As String = "Delete from TASK.Project Where Id = @Id"
+                Dim query As String = "Delete from TASK.Project Where Id = @Id"
 
-            connection.Execute(query, New With {
-                .Id = projectId
-            })
-        End Using
-    End Sub
+                connection.Execute(query, New With {
+                    .Id = projectId
+                })
+            End Using
 
-    Public Sub Update(project As Project)
-        Using connection As New DB2Connection(_dbContext.ConnectionString)
-            connection.Open()
+            _result.Status = True
+            Return _result
+        Catch ex As Exception
+            _result.Status = False
+            _result.ErrorMessage = ex.Message
+        End Try
 
-            Dim query As String = "Update TASK.Project set Name = @Name, Description = @Description, ClientId= @ClientId Where Id = @Id"
+        Return _result
+    End Function
 
-            connection.Execute(query, New With {
-                .Id = project.Id,
-                .Name = project.Name,
-                .Description = project.Description,
-                .ClientId = project.ClientId
-            })
-        End Using
-    End Sub
+    Public Function Update(project As Project)
+        Try
+            Using connection As New DB2Connection(_dbContext.ConnectionString)
+                connection.Open()
+
+                Dim query As String = "Update TASK.Project set Name = @Name, Description = @Description, ClientId= @ClientId Where Id = @Id"
+
+                connection.Execute(query, New With {
+                    .Id = project.Id,
+                    .Name = project.Name,
+                    .Description = project.Description,
+                    .ClientId = project.ClientId
+                })
+            End Using
+
+            _result.Status = True
+            Return _result
+
+        Catch ex As Exception
+            _result.Status = False
+            _result.ErrorMessage = ex.Message
+        End Try
+        Return _result
+    End Function
 End Class

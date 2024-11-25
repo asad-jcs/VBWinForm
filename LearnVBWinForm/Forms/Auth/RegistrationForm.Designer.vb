@@ -22,94 +22,106 @@ Partial Class RegistrationForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        emailTextBox = New TextBox()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(RegistrationForm))
+        emailReqTextBox = New TextBox()
         emailLabel = New Label()
         usernameLabel = New Label()
-        usernameTextBox = New TextBox()
+        usernameReqTextBox = New TextBox()
         passwordLabel = New Label()
-        passwordTextBox = New TextBox()
+        passwordReqTextBox = New TextBox()
         cnfPasswordLabel = New Label()
-        cnfPasswordTextBox = New TextBox()
+        cnfPasswordReqTextBox = New TextBox()
         regButton = New Button()
         loginTableLayoutPanel = New TableLayoutPanel()
         loginLabel = New Label()
+        clearButton = New Button()
+        messagePanel = New Panel()
+        msgLabel = New Label()
         loginTableLayoutPanel.SuspendLayout()
+        messagePanel.SuspendLayout()
         SuspendLayout()
         ' 
-        ' emailTextBox
+        ' emailReqTextBox
         ' 
-        emailTextBox.Location = New Point(166, 96)
-        emailTextBox.Name = "emailTextBox"
-        emailTextBox.Size = New Size(194, 27)
-        emailTextBox.TabIndex = 0
+        emailReqTextBox.Location = New Point(145, 72)
+        emailReqTextBox.Margin = New Padding(3, 2, 3, 2)
+        emailReqTextBox.Name = "emailReqTextBox"
+        emailReqTextBox.Size = New Size(170, 23)
+        emailReqTextBox.TabIndex = 0
         ' 
         ' emailLabel
         ' 
         emailLabel.AutoSize = True
-        emailLabel.Location = New Point(12, 99)
+        emailLabel.Location = New Point(10, 74)
         emailLabel.Name = "emailLabel"
-        emailLabel.Size = New Size(46, 20)
+        emailLabel.Size = New Size(36, 15)
         emailLabel.TabIndex = 1
         emailLabel.Text = "Email"
         ' 
         ' usernameLabel
         ' 
         usernameLabel.AutoSize = True
-        usernameLabel.Location = New Point(12, 132)
+        usernameLabel.Location = New Point(10, 99)
         usernameLabel.Name = "usernameLabel"
-        usernameLabel.Size = New Size(75, 20)
+        usernameLabel.Size = New Size(60, 15)
         usernameLabel.TabIndex = 3
         usernameLabel.Text = "Username"
         ' 
-        ' usernameTextBox
+        ' usernameReqTextBox
         ' 
-        usernameTextBox.Location = New Point(166, 129)
-        usernameTextBox.Name = "usernameTextBox"
-        usernameTextBox.Size = New Size(194, 27)
-        usernameTextBox.TabIndex = 2
+        usernameReqTextBox.Location = New Point(145, 97)
+        usernameReqTextBox.Margin = New Padding(3, 2, 3, 2)
+        usernameReqTextBox.Name = "usernameReqTextBox"
+        usernameReqTextBox.Size = New Size(170, 23)
+        usernameReqTextBox.TabIndex = 2
         ' 
         ' passwordLabel
         ' 
         passwordLabel.AutoSize = True
-        passwordLabel.Location = New Point(12, 165)
+        passwordLabel.Location = New Point(10, 124)
         passwordLabel.Name = "passwordLabel"
-        passwordLabel.Size = New Size(70, 20)
+        passwordLabel.Size = New Size(57, 15)
         passwordLabel.TabIndex = 5
         passwordLabel.Text = "Password"
         ' 
-        ' passwordTextBox
+        ' passwordReqTextBox
         ' 
-        passwordTextBox.Location = New Point(166, 162)
-        passwordTextBox.Name = "passwordTextBox"
-        passwordTextBox.Size = New Size(194, 27)
-        passwordTextBox.TabIndex = 4
+        passwordReqTextBox.Location = New Point(145, 122)
+        passwordReqTextBox.Margin = New Padding(3, 2, 3, 2)
+        passwordReqTextBox.Name = "passwordReqTextBox"
+        passwordReqTextBox.Size = New Size(170, 23)
+        passwordReqTextBox.TabIndex = 4
         ' 
         ' cnfPasswordLabel
         ' 
         cnfPasswordLabel.AutoSize = True
-        cnfPasswordLabel.Location = New Point(12, 198)
+        cnfPasswordLabel.Location = New Point(10, 148)
         cnfPasswordLabel.Name = "cnfPasswordLabel"
-        cnfPasswordLabel.Size = New Size(127, 20)
+        cnfPasswordLabel.Size = New Size(104, 15)
         cnfPasswordLabel.TabIndex = 7
         cnfPasswordLabel.Text = "Confirm Password"
         ' 
-        ' cnfPasswordTextBox
+        ' cnfPasswordReqTextBox
         ' 
-        cnfPasswordTextBox.Location = New Point(166, 195)
-        cnfPasswordTextBox.Name = "cnfPasswordTextBox"
-        cnfPasswordTextBox.Size = New Size(194, 27)
-        cnfPasswordTextBox.TabIndex = 6
+        cnfPasswordReqTextBox.Location = New Point(145, 146)
+        cnfPasswordReqTextBox.Margin = New Padding(3, 2, 3, 2)
+        cnfPasswordReqTextBox.Name = "cnfPasswordReqTextBox"
+        cnfPasswordReqTextBox.Size = New Size(170, 23)
+        cnfPasswordReqTextBox.TabIndex = 6
         ' 
         ' regButton
         ' 
         regButton.BackColor = Color.BlueViolet
+        regButton.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        regButton.ForeColor = SystemColors.ButtonHighlight
         regButton.Image = My.Resources.Resources.icons8_create_16
         regButton.ImageAlign = ContentAlignment.MiddleRight
-        regButton.Location = New Point(241, 228)
+        regButton.Location = New Point(211, 171)
+        regButton.Margin = New Padding(3, 2, 3, 2)
         regButton.Name = "regButton"
-        regButton.Size = New Size(119, 34)
+        regButton.Size = New Size(104, 26)
         regButton.TabIndex = 8
-        regButton.Text = "Create"
+        regButton.Text = "Sign Up"
         regButton.UseVisualStyleBackColor = False
         ' 
         ' loginTableLayoutPanel
@@ -125,10 +137,11 @@ Partial Class RegistrationForm
         loginTableLayoutPanel.Controls.Add(loginLabel, 2, 0)
         loginTableLayoutPanel.Dock = DockStyle.Top
         loginTableLayoutPanel.Location = New Point(0, 0)
+        loginTableLayoutPanel.Margin = New Padding(3, 2, 3, 2)
         loginTableLayoutPanel.Name = "loginTableLayoutPanel"
         loginTableLayoutPanel.RowCount = 1
         loginTableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Percent, 100F))
-        loginTableLayoutPanel.Size = New Size(800, 57)
+        loginTableLayoutPanel.Size = New Size(700, 43)
         loginTableLayoutPanel.TabIndex = 16
         ' 
         ' loginLabel
@@ -136,47 +149,90 @@ Partial Class RegistrationForm
         loginLabel.AutoSize = True
         loginLabel.Font = New Font("Comic Sans MS", 20F)
         loginLabel.ForeColor = SystemColors.ControlLightLight
-        loginLabel.Location = New Point(347, 0)
+        loginLabel.Location = New Point(304, 0)
         loginLabel.Name = "loginLabel"
-        loginLabel.Size = New Size(216, 47)
+        loginLabel.Size = New Size(172, 38)
         loginLabel.TabIndex = 0
         loginLabel.Text = "Registration"
         ' 
+        ' clearButton
+        ' 
+        clearButton.BackColor = SystemColors.ActiveBorder
+        clearButton.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
+        clearButton.Image = CType(resources.GetObject("clearButton.Image"), Image)
+        clearButton.ImageAlign = ContentAlignment.MiddleRight
+        clearButton.Location = New Point(123, 171)
+        clearButton.Margin = New Padding(3, 2, 3, 2)
+        clearButton.Name = "clearButton"
+        clearButton.Size = New Size(82, 26)
+        clearButton.TabIndex = 17
+        clearButton.Text = "Clear"
+        clearButton.UseVisualStyleBackColor = False
+        ' 
+        ' messagePanel
+        ' 
+        messagePanel.Controls.Add(msgLabel)
+        messagePanel.Dock = DockStyle.Bottom
+        messagePanel.Location = New Point(0, 244)
+        messagePanel.Margin = New Padding(9, 8, 9, 8)
+        messagePanel.Name = "messagePanel"
+        messagePanel.Size = New Size(700, 94)
+        messagePanel.TabIndex = 18
+        ' 
+        ' msgLabel
+        ' 
+        msgLabel.AutoSize = True
+        msgLabel.Dock = DockStyle.Top
+        msgLabel.Font = New Font("Comic Sans MS", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        msgLabel.Location = New Point(0, 0)
+        msgLabel.Margin = New Padding(9, 8, 9, 8)
+        msgLabel.Name = "msgLabel"
+        msgLabel.Size = New Size(0, 21)
+        msgLabel.TabIndex = 0
+        ' 
         ' RegistrationForm
         ' 
-        AutoScaleDimensions = New SizeF(8F, 20F)
+        AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.FromArgb(CByte(189), CByte(195), CByte(199))
-        ClientSize = New Size(800, 450)
+        ClientSize = New Size(700, 338)
         ControlBox = False
+        Controls.Add(messagePanel)
+        Controls.Add(clearButton)
         Controls.Add(loginTableLayoutPanel)
         Controls.Add(regButton)
         Controls.Add(cnfPasswordLabel)
-        Controls.Add(cnfPasswordTextBox)
+        Controls.Add(cnfPasswordReqTextBox)
         Controls.Add(passwordLabel)
-        Controls.Add(passwordTextBox)
+        Controls.Add(passwordReqTextBox)
         Controls.Add(usernameLabel)
-        Controls.Add(usernameTextBox)
+        Controls.Add(usernameReqTextBox)
         Controls.Add(emailLabel)
-        Controls.Add(emailTextBox)
+        Controls.Add(emailReqTextBox)
+        Margin = New Padding(3, 2, 3, 2)
         Name = "RegistrationForm"
         Text = "RegistrationForm"
         WindowState = FormWindowState.Maximized
         loginTableLayoutPanel.ResumeLayout(False)
         loginTableLayoutPanel.PerformLayout()
+        messagePanel.ResumeLayout(False)
+        messagePanel.PerformLayout()
         ResumeLayout(False)
         PerformLayout()
     End Sub
 
-    Friend WithEvents emailTextBox As TextBox
+    Friend WithEvents emailReqTextBox As TextBox
     Friend WithEvents emailLabel As Label
     Friend WithEvents usernameLabel As Label
-    Friend WithEvents usernameTextBox As TextBox
+    Friend WithEvents usernameReqTextBox As TextBox
     Friend WithEvents passwordLabel As Label
-    Friend WithEvents passwordTextBox As TextBox
+    Friend WithEvents passwordReqTextBox As TextBox
     Friend WithEvents cnfPasswordLabel As Label
-    Friend WithEvents cnfPasswordTextBox As TextBox
+    Friend WithEvents cnfPasswordReqTextBox As TextBox
     Friend WithEvents regButton As Button
     Friend WithEvents loginTableLayoutPanel As TableLayoutPanel
     Friend WithEvents loginLabel As Label
+    Friend WithEvents clearButton As Button
+    Friend WithEvents messagePanel As Panel
+    Friend WithEvents msgLabel As Label
 End Class

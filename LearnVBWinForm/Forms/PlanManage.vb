@@ -23,28 +23,35 @@ Public Class PlanManage
 
 
         ' This allows for a "blank" appearance while still being able to select dates
-        finishDateTimePicker.Format = DateTimePickerFormat.Custom
-        finishDateTimePicker.CustomFormat = "yyyy/MM/dd" ' or any other format you prefer
-        finishDateTimePicker.ShowCheckBox = True ' Allow checking to "clear" the date
-        finishDateTimePicker.Value = DateTimePicker.MinimumDateTime ' Initially set to the minimum date
+        endReqDateTimePicker.Format = DateTimePickerFormat.Custom
+        endReqDateTimePicker.CustomFormat = "yyyy/MM/dd" ' or any other format you prefer
+        endReqDateTimePicker.ShowCheckBox = True ' Allow checking to "clear" the date
+        endReqDateTimePicker.Value = DateTimePicker.MinimumDateTime ' Initially set to the minimum date
     End Sub
     Private Sub LoadPlanDataGridView()
-        _listOfTask = _taskService.GetAll()
+        Dim result As Result = _taskService.GetAll()
+        _listOfTask = result.ResModel
         Util.LoadGridView(planDataGridView, _listOfTask)
         planDataGridView.Columns("User_ID").Visible = False
         planDataGridView.Columns("ProjectId").Visible = False
     End Sub
     Private Sub deleteButton_Click(sender As Object, e As EventArgs) Handles deleteButton.Click
 
-        Dim title As String = titleTextBox.Text
+        Dim title As String = titleReqTextBox.Text
 
         Dim confirm As Boolean = Util.ShowConfirmationDialog(title + " will be deleted")
 
         If confirm Then
-            _taskService.Delete(_selectedItem)
+            Dim res As Result = _taskService.Delete(_selectedItem)
+            If res.Status Then
+                Util.ShowMsg(DELETE_MSG, msgLabel)
+                LoadPlanDataGridView()
+            Else
+                Util.ShowMsg(res.ErrorMessage, msgLabel, True)
+            End If
         End If
 
-        LoadPlanDataGridView()
+
     End Sub
     Private Sub planDataGridView_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles planDataGridView.CellClick
         If planDataGridView.SelectedRows.Count > 0 Then
@@ -57,56 +64,77 @@ Public Class PlanManage
                 deleteButton.Enabled = True
                 addButton.Enabled = False
 
-                titleTextBox.Text = selectedRow.Cells("Title").Value.ToString()
+                titleReqTextBox.Text = selectedRow.Cells("Title").Value.ToString()
                 descTextBox.Text = selectedRow.Cells("Description").Value.ToString()
                 Dim startDate As DateTime
                 If DateTime.TryParse(selectedRow.Cells("Start_Date").Value.ToString(), startDate) Then
-                    startDateTimePicker.Value = startDate
+                    startReqDateTimePicker.Value = startDate
                 End If
                 Dim endDate As DateTime
                 If DateTime.TryParse(selectedRow.Cells("End_Date").Value.ToString(), endDate) Then
-                    endDateTimePicker.Value = endDate
+                    endReqDateTimePicker.Value = endDate
                 End If
                 Dim finishDate As DateTime
                 If selectedRow.Cells("Finishing_Date").Value IsNot Nothing Then
                     ' Attempt to parse the cell value to a DateTime
                     If DateTime.TryParse(selectedRow.Cells("Finishing_Date").Value.ToString(), finishDate) Then
                         ' If parsing is successful, set the DateTimePicker value
-                        finishDateTimePicker.Value = finishDate
+                        endReqDateTimePicker.Value = finishDate
                     End If
                 End If
                 completionTextBox.Text = selectedRow.Cells("Completion").Value
 
-                userComboBox.SelectedValue = selectedRow.Cells("User_Id").Value.ToString()
-                projectComboBox.SelectedValue = selectedRow.Cells("ProjectId").Value.ToString()
+                userReqComboBox.SelectedValue = selectedRow.Cells("User_Id").Value.ToString()
+                projectReqComboBox.SelectedValue = selectedRow.Cells("ProjectId").Value.ToString()
                 Dim val = selectedRow.Cells("Priority").Value.ToString()
-                priorityComboBox.SelectedValue = val
+                priorityReqComboBox.SelectedValue = val
 
 
             End If
         End If
     End Sub
     Private Sub updteButton_Click(sender As Object, e As EventArgs) Handles updteButton.Click
-        Dim taskInfo As New Task_Info()
-        taskInfo.Id = _selectedItem
-        taskInfo.Title = titleTextBox.Text
-        taskInfo.Description = descTextBox.Text
-        taskInfo.UserID = userComboBox.SelectedValue
-        taskInfo.Completion = If(String.IsNullOrEmpty(completionTextBox.Text), 0D, Convert.ToDecimal(completionTextBox.Text))
 
-        Dim d1 = finishDateTimePicker.Value.Date
-        Dim d2 = DateTimePicker.MinimumDateTime.Date
+        Dim msg = UIValidation.ValidateForm(Me)
 
-        If d1 = d2 Then
-            taskInfo.Finishing_Date = Nothing ' Set to null if no date is selected
+        If Not String.IsNullOrEmpty(msg) Then
+            Util.ShowMsg(msg, msgLabel, True)
+        ElseIf Not String.IsNullOrEmpty(completionTextBox.Text) AndAlso
+            UIValidation.IsValidNumber(completionTextBox.Text) Then
+            Util.ShowMsg(NUMBER_FORMAT, msgLabel, True)
         Else
-            taskInfo.Finishing_Date = finishDateTimePicker.Value ' Assign the selected date
+
+            Dim taskInfo As New Task_Info()
+            taskInfo.Id = _selectedItem
+            taskInfo.Title = titleReqTextBox.Text
+            taskInfo.Description = descTextBox.Text
+            taskInfo.UserID = userReqComboBox.SelectedValue
+            taskInfo.ProjectId = projectReqComboBox.SelectedValue
+            taskInfo.Priority = priorityReqComboBox.SelectedValue
+            taskInfo.Completion = If(String.IsNullOrEmpty(completionTextBox.Text), 0D, Convert.ToDecimal(completionTextBox.Text))
+
+            Dim d1 = endReqDateTimePicker.Value.Date
+            Dim d2 = DateTimePicker.MinimumDateTime.Date
+
+            taskInfo.Start_Date = startReqDateTimePicker.Value
+            taskInfo.End_Date = endReqDateTimePicker.Value
+            If d1 = d2 Then
+                taskInfo.Finishing_Date = Nothing ' Set to null if no date is selected
+            Else
+                taskInfo.Finishing_Date = endReqDateTimePicker.Value ' Assign the selected date
+            End If
+
+            Dim res As Result = _taskService.UpdateTask(taskInfo)
+
+            If res.Status Then
+                Util.ShowMsg(taskInfo.Title + UPDATE_MSG, msgLabel)
+                LoadPlanDataGridView()
+            Else
+                Util.ShowMsg(res.ErrorMessage, msgLabel, True)
+            End If
+
         End If
 
-        _taskService.UpdateTask(taskInfo)
-        MessageBox.Show(taskInfo.Title + " Updated successfully")
-
-        LoadPlanDataGridView()
     End Sub
     Private Sub planDataGridView_CellPainting(sender As Object, e As DataGridViewCellPaintingEventArgs) Handles planDataGridView.CellPainting
         ' Check if we are painting the completion column
@@ -169,33 +197,48 @@ Public Class PlanManage
     End Sub
 
     Private Sub addButton_Click(sender As Object, e As EventArgs) Handles addButton.Click
-        Dim taskInfo = New Task_Info()
 
-        taskInfo.Title = titleTextBox.Text
-        taskInfo.Description = descTextBox.Text
-        taskInfo.Start_Date = startDateTimePicker.Value
-        taskInfo.End_Date = endDateTimePicker.Value
+        Dim msg = UIValidation.ValidateForm(Me)
 
-        Dim selectedValue As String = priorityComboBox.SelectedItem.ToString()
+        If Not String.IsNullOrEmpty(msg) Then
+            Util.ShowMsg(msg, msgLabel, True)
+        ElseIf Not String.IsNullOrEmpty(completionTextBox.Text) AndAlso
+            UIValidation.IsValidNumber(completionTextBox.Text) Then
+            Util.ShowMsg(NUMBER_FORMAT, msgLabel, True)
+        Else
+            Dim taskInfo = New Task_Info()
 
-        ' Find the corresponding key in the dictionary based on the selected value
-        Dim selectedKey As String = _priorityDictionary.FirstOrDefault(Function(kvp) kvp.Value = selectedValue).Key
-        taskInfo.Priority = selectedKey
-        'If userComboBox.SelectedValue Is Nothing Then
-        '    taskInfo.UserID = _userID
-        'Else
-        '    taskInfo.UserID = userComboBox.SelectedValue
-        'End If
+            taskInfo.Title = titleReqTextBox.Text
+            taskInfo.Description = descTextBox.Text
+            taskInfo.Start_Date = startReqDateTimePicker.Value
+            taskInfo.End_Date = endReqDateTimePicker.Value
 
-        taskInfo.ProjectId = projectComboBox.SelectedValue
-        taskInfo.UserID = userComboBox.SelectedValue
-        taskInfo.Priority = priorityComboBox.SelectedValue
-        _taskService.Add(taskInfo)
+            Dim selectedValue As String = priorityReqComboBox.SelectedItem.ToString()
 
-        MessageBox.Show("Task Has Registered Successfully")
-        Util.ClearAllInputs(Me)
+            ' Find the corresponding key in the dictionary based on the selected value
+            Dim selectedKey As String = _priorityDictionary.FirstOrDefault(Function(kvp) kvp.Value = selectedValue).Key
+            taskInfo.Priority = selectedKey
+            'If userReqComboBox.SelectedValue Is Nothing Then
+            '    taskInfo.UserID = _userID
+            'Else
+            '    taskInfo.UserID = userReqComboBox.SelectedValue
+            'End If
 
-        LoadPlanDataGridView()
+            taskInfo.ProjectId = projectReqComboBox.SelectedValue
+            taskInfo.UserID = userReqComboBox.SelectedValue
+            taskInfo.Priority = priorityReqComboBox.SelectedValue
+            Dim res As Result = _taskService.Add(taskInfo)
+            If res.Status Then
+                Util.ShowMsg(SUCCESS_MSG, msgLabel)
+                Util.ClearAllInputs(Me)
+                LoadPlanDataGridView()
+            Else
+                Util.ShowMsg(SUCCESS_MSG, msgLabel, True)
+            End If
+
+        End If
+
+
     End Sub
 
     Private Sub LoadDropdown()
@@ -209,12 +252,12 @@ Public Class PlanManage
             priorityList.Rows.Add(kvp.Key, kvp.Value)
         Next
 
-        priorityComboBox.DataSource = priorityList
-        priorityComboBox.DisplayMember = "Display"
-        priorityComboBox.ValueMember = "Value"
+        priorityReqComboBox.DataSource = priorityList
+        priorityReqComboBox.DisplayMember = "Display"
+        priorityReqComboBox.ValueMember = "Value"
 
-        Util.LoadDropBox(userComboBox, _userService.GetAll(), "Username", "Id")
-        Util.LoadDropBox(projectComboBox, _projectService.GetAll(), "Name", "Id")
+        Util.LoadDropBox(userReqComboBox, _userService.GetAll().ResModel, "Username", "Id")
+        Util.LoadDropBox(projectReqComboBox, _projectService.GetAll().ResModel, "Name", "Id")
     End Sub
 
     Private Sub searchButton_Click(sender As Object, e As EventArgs) Handles searchButton.Click

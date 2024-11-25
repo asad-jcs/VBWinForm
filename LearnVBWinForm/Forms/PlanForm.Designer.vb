@@ -31,13 +31,13 @@ Partial Class PlanForm
         endDateTimePicker = New DateTimePicker()
         endLabel = New Label()
         Label1 = New Label()
-        priorityComboBox = New ComboBox()
+        priorityReqComboBox = New ComboBox()
         addButton = New Button()
         ColorDialog1 = New ColorDialog()
         FontDialog1 = New FontDialog()
         entryPlanLabel = New Label()
         planTableLayoutPanel = New TableLayoutPanel()
-        userComboBox = New ComboBox()
+        userReqComboBox = New ComboBox()
         assignLabel = New Label()
         planTableLayoutPanel.SuspendLayout()
         SuspendLayout()
@@ -116,13 +116,13 @@ Partial Class PlanForm
         Label1.TabIndex = 10
         Label1.Text = "Priority"
         ' 
-        ' priorityComboBox
+        ' priorityReqComboBox
         ' 
-        priorityComboBox.FormattingEnabled = True
-        priorityComboBox.Location = New Point(162, 302)
-        priorityComboBox.Name = "priorityComboBox"
-        priorityComboBox.Size = New Size(202, 28)
-        priorityComboBox.TabIndex = 11
+        priorityReqComboBox.FormattingEnabled = True
+        priorityReqComboBox.Location = New Point(162, 302)
+        priorityReqComboBox.Name = "priorityReqComboBox"
+        priorityReqComboBox.Size = New Size(202, 28)
+        priorityReqComboBox.TabIndex = 11
         ' 
         ' addButton
         ' 
@@ -136,9 +136,9 @@ Partial Class PlanForm
         ' entryPlanLabel
         ' 
         entryPlanLabel.AutoSize = True
-        entryPlanLabel.Font = New Font("Comic Sans MS", 20F)
+        entryPlanLabel.Font = New Font("Comic Sans MS", 20.0F)
         entryPlanLabel.ForeColor = SystemColors.ControlLightLight
-        entryPlanLabel.Location = New Point(316, 0)
+        entryPlanLabel.Location = New Point(407, 0)
         entryPlanLabel.Name = "entryPlanLabel"
         entryPlanLabel.Size = New Size(181, 47)
         entryPlanLabel.TabIndex = 0
@@ -149,27 +149,27 @@ Partial Class PlanForm
         planTableLayoutPanel.BackColor = Color.FromArgb(CByte(44), CByte(62), CByte(80))
         planTableLayoutPanel.BackgroundImageLayout = ImageLayout.Center
         planTableLayoutPanel.ColumnCount = 5
-        planTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 20F))
-        planTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 17.5F))
-        planTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 25F))
-        planTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 17.5F))
-        planTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 20F))
+        planTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 19.23077F))
+        planTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 29.3269234F))
+        planTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 24.0384617F))
+        planTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 8.173077F))
+        planTableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 19.23077F))
         planTableLayoutPanel.Controls.Add(entryPlanLabel, 2, 0)
         planTableLayoutPanel.Dock = DockStyle.Top
         planTableLayoutPanel.Location = New Point(0, 0)
         planTableLayoutPanel.Name = "planTableLayoutPanel"
         planTableLayoutPanel.RowCount = 1
-        planTableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Percent, 100F))
+        planTableLayoutPanel.RowStyles.Add(New RowStyle(SizeType.Percent, 100.0F))
         planTableLayoutPanel.Size = New Size(835, 57)
         planTableLayoutPanel.TabIndex = 16
         ' 
-        ' userComboBox
+        ' userReqComboBox
         ' 
-        userComboBox.FormattingEnabled = True
-        userComboBox.Location = New Point(162, 350)
-        userComboBox.Name = "userComboBox"
-        userComboBox.Size = New Size(202, 28)
-        userComboBox.TabIndex = 19
+        userReqComboBox.FormattingEnabled = True
+        userReqComboBox.Location = New Point(162, 350)
+        userReqComboBox.Name = "userReqComboBox"
+        userReqComboBox.Size = New Size(202, 28)
+        userReqComboBox.TabIndex = 19
         ' 
         ' assignLabel
         ' 
@@ -182,16 +182,16 @@ Partial Class PlanForm
         ' 
         ' PlanForm
         ' 
-        AutoScaleDimensions = New SizeF(8F, 20F)
+        AutoScaleDimensions = New SizeF(8.0F, 20.0F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.FromArgb(CByte(189), CByte(195), CByte(199))
         ClientSize = New Size(835, 504)
         ControlBox = False
-        Controls.Add(userComboBox)
+        Controls.Add(userReqComboBox)
         Controls.Add(assignLabel)
         Controls.Add(planTableLayoutPanel)
         Controls.Add(addButton)
-        Controls.Add(priorityComboBox)
+        Controls.Add(priorityReqComboBox)
         Controls.Add(Label1)
         Controls.Add(endDateTimePicker)
         Controls.Add(endLabel)
@@ -219,13 +219,13 @@ Partial Class PlanForm
     Friend WithEvents endDateTimePicker As DateTimePicker
     Friend WithEvents endLabel As Label
     Friend WithEvents Label1 As Label
-    Friend WithEvents priorityComboBox As ComboBox
+    Friend WithEvents priorityReqComboBox As ComboBox
     Friend WithEvents addButton As Button
     Friend WithEvents ColorDialog1 As ColorDialog
     Friend WithEvents FontDialog1 As FontDialog
     Friend WithEvents Panel1 As Panel
     Friend WithEvents entryPlanLabel As Label
     Friend WithEvents planTableLayoutPanel As TableLayoutPanel
-    Friend WithEvents userComboBox As ComboBox
+    Friend WithEvents userReqComboBox As ComboBox
     Friend WithEvents assignLabel As Label
 End Class

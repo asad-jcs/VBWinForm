@@ -54,29 +54,24 @@ Public Class Dashboard
     End Sub
 
     Public Sub ShowNavBeforeLogin()
-        'Me.logoutLinkLabel.Visible = False
-        'Me.homeLinkLabel.Visible = False
+
+
         Me.pNameLabel.Visible = False
-        'Me.planListLinkLabel.Visible = False
-        'Me.planManageLinkLabel.Visible = False
-        'Me.clientLinkLabel.Visible = False
-        'Me.projectLinkLabel.Visible = False
+        Me.timePanel.Visible = True
+        timePanel.BringToFront()
         Me.welcomeLabel.Visible = True
         welcomeLabel.BringToFront()
         mainPanel.Controls.Add(welcomeLabel)
+        mainPanel.Controls.Add(timePanel)
         Me.loginButton.Visible = True
         Me.profilePictureBox.Visible = False
         Me.MenuStrip.Visible = False
     End Sub
 
     Public Sub ShowNavAfterLogin()
-        'Me.logoutLinkLabel.Visible = True
-        'Me.homeLinkLabel.Visible = True
+
         Me.pNameLabel.Visible = True
-        'Me.planListLinkLabel.Visible = True
-        'Me.planManageLinkLabel.Visible = True
-        'Me.clientLinkLabel.Visible = True
-        'Me.projectLinkLabel.Visible = True
+
         welcomeLabel.Visible = False
         Me.loginButton.Visible = False
         Me.profilePictureBox.Visible = True

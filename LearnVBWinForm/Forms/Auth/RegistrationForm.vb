@@ -15,18 +15,36 @@ Public Class RegistrationForm
 
     End Sub
     Private Sub regButton_Click(sender As Object, e As EventArgs) Handles regButton.Click
-        Dim user = New User
 
-        user.Username = usernameTextBox.Text
-        user.Email = emailTextBox.Text
-        If cnfPasswordTextBox.Text = passwordTextBox.Text Then
-            user.Password = passwordTextBox.Text
-            _userService.Registration(user)
-            Util.ClearAllInputs(Me)
+        Dim msg = UIValidation.ValidateForm(Me)
+        UIValidation.IsValidEmail(emailReqTextBox.Text)
+        If Not String.IsNullOrEmpty(msg) Then
+            Util.ShowMsg(msg, msgLabel, True)
+        ElseIf Not UIValidation.IsValidEmail(emailReqTextBox.Text) Then
+            Util.ShowMsg(EMAIL_FORMAT, msgLabel, True)
         Else
-            MessageBox.Show("Password did not match!")
-        End If
+            Dim user = New User
 
-        MessageBox.Show("Data Saved Successfully!")
+            user.Username = usernameReqTextBox.Text
+            user.Email = emailReqTextBox.Text
+            If cnfPasswordReqTextBox.Text = passwordReqTextBox.Text Then
+                user.Password = passwordReqTextBox.Text
+                Dim result As Result = _userService.Registration(user)
+                If result.Status Then
+                    Util.ClearAllInputs(Me)
+                    Util.ShowMsg("Data Saved Successfully!", msgLabel)
+                Else
+                    Util.ShowMsg(result.ErrorMessage, msgLabel, True)
+                End If
+            Else
+                Util.ShowMsg("Password did not match!", msgLabel, True)
+            End If
+
+
+        End If
+    End Sub
+
+    Private Sub clearButton_Click(sender As Object, e As EventArgs) Handles clearButton.Click
+        Util.ClearAllInputs(Me)
     End Sub
 End Class

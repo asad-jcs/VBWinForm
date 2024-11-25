@@ -47,6 +47,10 @@
             DirectCast(control, RadioButton).Checked = False
         End If
 
+        If TypeOf control Is Label AndAlso control.Name Is "msgLabel" Then
+            DirectCast(control, Label).Text = ""
+        End If
+
         ' If the control is a container (like a Panel or GroupBox), recursively clear its children
         If control.HasChildren Then
             For Each childControl As Control In control.Controls
@@ -64,4 +68,16 @@
         ' Show the message box with Yes and No buttons and a question icon
         Return MessageBox.Show(message, "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
     End Function
+
+    Public Shared Sub ShowMsg(Msg As String, label As Label, Optional err As Boolean = False)
+        If err Then
+            label.BackColor = Color.OrangeRed
+            label.ForeColor = Color.Black
+        Else
+            label.BackColor = Color.LightGreen
+            label.ForeColor = Color.Black
+        End If
+
+        label.Text = Msg
+    End Sub
 End Class
